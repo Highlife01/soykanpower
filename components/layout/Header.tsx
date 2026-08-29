@@ -17,6 +17,8 @@ import {
   Cpu,
   Sun,
   Activity,
+  MapPin,
+  BookOpen,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -78,6 +80,18 @@ export function Header({ categories = [], siteSetting }: HeaderProps) {
     { title: "Eğitim Kurumları", href: "/sektorler/egitim-kurumlari" },
     { title: "Lojistik & Antrepo", href: "/sektorler/lojistik-ve-antrepo" },
     { title: "Ağır Endüstri & Fabrikalar", href: "/sektorler/agir-endustri-ve-fabrikalar" },
+  ];
+
+  const regionLinks = [
+    { title: "Adana (Merkez)", href: "/bolgeler/adana" },
+    { title: "Mersin & Liman", href: "/bolgeler/mersin" },
+    { title: "Gaziantep OSB", href: "/bolgeler/gaziantep" },
+    { title: "Hatay & İskenderun", href: "/bolgeler/hatay" },
+    { title: "Osmaniye OSB", href: "/bolgeler/osmaniye" },
+    { title: "Antalya & Oteller", href: "/bolgeler/antalya" },
+    { title: "Isparta & Soğuk Depo", href: "/bolgeler/isparta" },
+    { title: "Niğde & Maden", href: "/bolgeler/nigde" },
+    { title: "KKTC (Kuzey Kıbrıs)", href: "/bolgeler/kktc" },
   ];
 
   return (
@@ -305,6 +319,53 @@ export function Header({ categories = [], siteSetting }: HeaderProps) {
               )}
             </div>
 
+            {/* Bölgeler Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setActiveDropdown("bolgeler")}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <Link
+                href="/bolgeler"
+                className={cn(
+                  "flex items-center space-x-1 px-3 py-2 text-sm font-medium transition-colors rounded-lg",
+                  pathname.startsWith("/bolgeler")
+                    ? "text-amber-400"
+                    : "text-slate-200 hover:text-white hover:bg-slate-800/40"
+                )}
+              >
+                <span>Bölgeler</span>
+                <ChevronDown className="w-4 h-4 text-slate-400" />
+              </Link>
+
+              {activeDropdown === "bolgeler" && (
+                <div className="absolute top-full -left-10 w-[420px] pt-2 z-50">
+                  <div className="bg-slate-900/95 backdrop-blur-xl border border-slate-800 rounded-xl shadow-2xl p-4">
+                    <div className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2 pb-1 border-b border-slate-800">
+                      Hizmet Verdiğimiz Sanayi Bölgeleri
+                    </div>
+                    <div className="grid grid-cols-2 gap-1.5">
+                      {regionLinks.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="px-2.5 py-1.5 rounded-lg text-xs text-slate-300 hover:text-amber-400 hover:bg-slate-800/60 transition-colors flex items-center space-x-1.5"
+                        >
+                          <MapPin className="w-3 h-3 text-amber-400/80 shrink-0" />
+                          <span>{item.title}</span>
+                        </Link>
+                      ))}
+                    </div>
+                    <div className="mt-3 pt-2 border-t border-slate-800 text-right">
+                      <Link href="/bolgeler" className="text-[11px] text-amber-400 hover:underline">
+                        Tüm Bölgeleri Gör →
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
             {/* Projeler */}
             <Link
               href="/projeler"
@@ -318,38 +379,18 @@ export function Header({ categories = [], siteSetting }: HeaderProps) {
               Projeler
             </Link>
 
-            {/* Referanslar */}
+            {/* Bilgi Merkezi */}
             <Link
-              href="/#referanslar"
-              className="px-3 py-2 text-sm font-medium text-slate-200 hover:text-white hover:bg-slate-800/40 transition-colors rounded-lg"
-            >
-              Referanslar
-            </Link>
-
-            {/* Haberler */}
-            <Link
-              href="/haberler"
+              href="/bilgi-merkezi"
               className={cn(
-                "px-3 py-2 text-sm font-medium transition-colors rounded-lg",
-                pathname.startsWith("/haberler")
+                "px-3 py-2 text-sm font-medium transition-colors rounded-lg flex items-center space-x-1",
+                pathname.startsWith("/bilgi-merkezi")
                   ? "text-amber-400"
                   : "text-slate-200 hover:text-white hover:bg-slate-800/40"
               )}
             >
-              Haberler
-            </Link>
-
-            {/* Kariyer */}
-            <Link
-              href="/kariyer"
-              className={cn(
-                "px-3 py-2 text-sm font-medium transition-colors rounded-lg",
-                pathname.startsWith("/kariyer")
-                  ? "text-amber-400"
-                  : "text-slate-200 hover:text-white hover:bg-slate-800/40"
-              )}
-            >
-              Kariyer
+              <BookOpen className="w-3.5 h-3.5 text-amber-400/80" />
+              <span>Bilgi Merkezi</span>
             </Link>
 
             {/* İletişim */}
@@ -424,11 +465,23 @@ export function Header({ categories = [], siteSetting }: HeaderProps) {
               <Link href="/sektorler" className="block py-3 font-semibold text-base">
                 Sektörler
               </Link>
+              <div className="py-2">
+                <span className="block text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">
+                  Hizmet Bölgeleri
+                </span>
+                <div className="grid grid-cols-2 gap-2 text-sm pl-2">
+                  {regionLinks.map((item) => (
+                    <Link key={item.href} href={item.href} className="text-slate-300 py-1">
+                      {item.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
               <Link href="/projeler" className="block py-3 font-semibold text-base">
                 Projeler
               </Link>
-              <Link href="/#referanslar" className="block py-3 font-semibold text-base">
-                Referanslar
+              <Link href="/bilgi-merkezi" className="block py-3 font-semibold text-base text-amber-400">
+                Teknik Bilgi Merkezi
               </Link>
               <Link href="/haberler" className="block py-3 font-semibold text-base">
                 Haberler

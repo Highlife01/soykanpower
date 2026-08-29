@@ -9,6 +9,7 @@ import {
   ShieldCheck,
   ChevronRight,
   Globe,
+  BookOpen,
 } from "lucide-react";
 
 interface FooterProps {
@@ -117,61 +118,10 @@ export function Footer({ siteSetting }: FooterProps) {
             </div>
           </div>
 
-          {/* Column 2: Kurumsal */}
+          {/* Column 2: Faaliyet Alanları */}
           <div className="space-y-4">
             <h4 className="text-sm font-bold uppercase tracking-wider text-white border-l-2 border-amber-500 pl-3">
-              Kurumsal
-            </h4>
-            <ul className="space-y-2.5 text-sm">
-              <li>
-                <Link href="/kurumsal/hakkimizda" className="hover:text-amber-400 transition-colors flex items-center">
-                  <ChevronRight className="w-3.5 h-3.5 text-slate-600 mr-1" />
-                  <span>Hakkımızda</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/kurumsal/misyon-vizyon" className="hover:text-amber-400 transition-colors flex items-center">
-                  <ChevronRight className="w-3.5 h-3.5 text-slate-600 mr-1" />
-                  <span>Misyon & Vizyon</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/kurumsal/degerlerimiz" className="hover:text-amber-400 transition-colors flex items-center">
-                  <ChevronRight className="w-3.5 h-3.5 text-slate-600 mr-1" />
-                  <span>Değerlerimiz</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/kurumsal/kalite-politikasi" className="hover:text-amber-400 transition-colors flex items-center">
-                  <ChevronRight className="w-3.5 h-3.5 text-slate-600 mr-1" />
-                  <span>Kalite Politikamız</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/kurumsal/isg-politikasi" className="hover:text-amber-400 transition-colors flex items-center">
-                  <ChevronRight className="w-3.5 h-3.5 text-slate-600 mr-1" />
-                  <span>İSG Politikamız</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/kurumsal/belgeler-ve-sertifikalar" className="hover:text-amber-400 transition-colors flex items-center">
-                  <ChevronRight className="w-3.5 h-3.5 text-slate-600 mr-1" />
-                  <span>Belgeler & Sertifikalar</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/kurumsal/insan-kaynaklari" className="hover:text-amber-400 transition-colors flex items-center">
-                  <ChevronRight className="w-3.5 h-3.5 text-slate-600 mr-1" />
-                  <span>İnsan Kaynakları</span>
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 3: Faaliyet Alanları */}
-          <div className="space-y-4">
-            <h4 className="text-sm font-bold uppercase tracking-wider text-white border-l-2 border-amber-500 pl-3">
-              Faaliyet Alanları
+              Mühendislik & Hizmetler
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
@@ -183,13 +133,7 @@ export function Footer({ siteSetting }: FooterProps) {
               <li>
                 <Link href="/hizmetler/og-sistemleri" className="hover:text-amber-400 transition-colors flex items-center">
                   <ChevronRight className="w-3.5 h-3.5 text-slate-600 mr-1" />
-                  <span>Orta Gerilim (OG)</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/hizmetler/trafo-merkezleri" className="hover:text-amber-400 transition-colors flex items-center">
-                  <ChevronRight className="w-3.5 h-3.5 text-slate-600 mr-1" />
-                  <span>Trafo Merkezleri</span>
+                  <span>Orta Gerilim & Trafo</span>
                 </Link>
               </li>
               <li>
@@ -211,9 +155,59 @@ export function Footer({ siteSetting }: FooterProps) {
                 </Link>
               </li>
               <li>
-                <Link href="/hizmetler/endustri-4-0-ve-iot" className="hover:text-amber-400 transition-colors flex items-center">
+                <Link href="/bilgi-merkezi" className="hover:text-amber-400 transition-colors flex items-center font-semibold text-amber-400/90">
+                  <BookOpen className="w-3.5 h-3.5 mr-1" />
+                  <span>Teknik Bilgi Merkezi</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Hizmet Bölgeleri */}
+          <div className="space-y-4">
+            <h4 className="text-sm font-bold uppercase tracking-wider text-white border-l-2 border-amber-500 pl-3">
+              Hizmet Bölgeleri
+            </h4>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <Link href="/bolgeler/adana" className="hover:text-amber-400 transition-colors flex items-center">
                   <ChevronRight className="w-3.5 h-3.5 text-slate-600 mr-1" />
-                  <span>Endüstri 4.0 & IoT</span>
+                  <span>Adana (Merkez)</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/bolgeler/mersin" className="hover:text-amber-400 transition-colors flex items-center">
+                  <ChevronRight className="w-3.5 h-3.5 text-slate-600 mr-1" />
+                  <span>Mersin & Liman</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/bolgeler/gaziantep" className="hover:text-amber-400 transition-colors flex items-center">
+                  <ChevronRight className="w-3.5 h-3.5 text-slate-600 mr-1" />
+                  <span>Gaziantep OSB</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/bolgeler/hatay" className="hover:text-amber-400 transition-colors flex items-center">
+                  <ChevronRight className="w-3.5 h-3.5 text-slate-600 mr-1" />
+                  <span>Hatay & İskenderun</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/bolgeler/antalya" className="hover:text-amber-400 transition-colors flex items-center">
+                  <ChevronRight className="w-3.5 h-3.5 text-slate-600 mr-1" />
+                  <span>Antalya & Oteller</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/bolgeler/kktc" className="hover:text-amber-400 transition-colors flex items-center">
+                  <ChevronRight className="w-3.5 h-3.5 text-slate-600 mr-1" />
+                  <span>KKTC (Kıbrıs)</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/bolgeler" className="text-amber-400 hover:underline transition-colors flex items-center text-xs font-bold pt-1">
+                  <span>Tüm Bölgeler (9 Bölge) →</span>
                 </Link>
               </li>
             </ul>

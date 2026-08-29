@@ -26,17 +26,23 @@ interface UploadedFile {
 function QuoteFormContent() {
   const searchParams = useSearchParams();
   const prefilledService = searchParams.get("service") || "";
+  const prefilledCity = searchParams.get("city") || "";
 
   const [formData, setFormData] = useState({
     companyName: "",
     contactPerson: "",
     phone: "",
     email: "",
-    city: "",
+    city: prefilledCity || "",
     projectLocation: "",
     serviceType: prefilledService || "Elektrik Taahhüt",
     description: "",
     plannedDate: "",
+    landingPage: "",
+    referrer: "",
+    utmSource: "",
+    utmMedium: "",
+    utmCampaign: "",
   });
 
   const [files, setFiles] = useState<UploadedFile[]>([]);
@@ -46,10 +52,23 @@ function QuoteFormContent() {
   const [submittedReference, setSubmittedReference] = useState<string | null>(null);
 
   useEffect(() => {
-    if (prefilledService) {
-      setFormData((prev) => ({ ...prev, serviceType: prefilledService }));
-    }
-  }, [prefilledService]);
+    const utmSource = searchParams.get("utm_source") || "";
+    const utmMedium = searchParams.get("utm_medium") || "";
+    const utmCampaign = searchParams.get("utm_campaign") || "";
+    const currentUrl = typeof window !== "undefined" ? window.location.href : "";
+    const ref = typeof document !== "undefined" ? document.referrer : "";
+
+    setFormData((prev) => ({
+      ...prev,
+      city: prefilledCity || prev.city,
+      serviceType: prefilledService || prev.serviceType,
+      landingPage: currentUrl,
+      referrer: ref,
+      utmSource,
+      utmMedium,
+      utmCampaign,
+    }));
+  }, [prefilledService, prefilledCity, searchParams]);
 
   const serviceOptions = [
     "Elektrik Taahhüt",
@@ -184,6 +203,11 @@ function QuoteFormContent() {
                   serviceType: "Elektrik Taahhüt",
                   description: "",
                   plannedDate: "",
+                  landingPage: "",
+                  referrer: "",
+                  utmSource: "",
+                  utmMedium: "",
+                  utmCampaign: "",
                 });
               }}
             >
@@ -283,7 +307,7 @@ function QuoteFormContent() {
                   <input
                     type="text"
                     required
-                    placeholder="Örn: İstanbul, Kocaeli, Bursa..."
+                    placeholder="Örn: Adana, Mersin, Gaziantep..."
                     value={formData.city}
                     onChange={(e) =>
                       setFormData({ ...formData, city: e.target.value })
@@ -299,7 +323,7 @@ function QuoteFormContent() {
                   </label>
                   <input
                     type="text"
-                    placeholder="Örn: Dilovası OSB Fabrika Sahası"
+                    placeholder="Örn: Adana Hacı Sabancı OSB"
                     value={formData.projectLocation}
                     onChange={(e) =>
                       setFormData({
@@ -338,7 +362,7 @@ function QuoteFormContent() {
                   </label>
                   <input
                     type="text"
-                    placeholder="Örn: 2026 Q3 / Hemen / 3 Ay İçinde"
+                    placeholder="Örn: 2026 Q2 / Hemen / 1 Ay İçinde"
                     value={formData.plannedDate}
                     onChange={(e) =>
                       setFormData({ ...formData, plannedDate: e.target.value })

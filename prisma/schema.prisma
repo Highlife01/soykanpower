@@ -204,6 +204,11 @@ model QuoteRequest {
   plannedDate     String?
   status          String      @default("NEW") // NEW, IN_REVIEW, PREPARING, SENT, WON, LOST
   adminNotes      String?
+  landingPage     String?     // Lead tracking
+  referrer        String?     // Lead tracking
+  utmSource       String?     // Lead tracking
+  utmMedium       String?     // Lead tracking
+  utmCampaign     String?     // Lead tracking
   files           QuoteFile[]
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
@@ -258,3 +263,34 @@ model SeoPage {
   ogImage     String?
   updatedAt   DateTime @updatedAt
 }
+
+model Redirect {
+  id          String   @id @default(cuid())
+  sourcePath  String   @unique
+  targetPath  String
+  statusCode  Int      @default(301)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model TechnicalGuide {
+  id                 String   @id @default(cuid())
+  slug               String   @unique
+  title              String
+  summary            String
+  content            String
+  category           String   // OG & Trafo, Otomasyon & SCADA, Pano & Enerji, GES, Standartlar & Mevzuat
+  readTime           String?  // "6 dk okuma"
+  coverImage         String?
+  relatedServiceSlug String?
+  relatedSectorSlug  String?
+  relatedRegionSlug  String?
+  faqItems           String?  // JSON array of { question, answer }
+  published          Boolean  @default(true)
+  order              Int      @default(0)
+  metaTitle          String?
+  metaDesc           String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+

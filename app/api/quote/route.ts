@@ -13,6 +13,11 @@ const quoteSchema = z.object({
   serviceType: z.string().min(2, "Lütfen bir hizmet seçiniz"),
   description: z.string().min(10, "Proje açıklaması en az 10 karakter olmalıdır"),
   plannedDate: z.string().optional(),
+  landingPage: z.string().optional(),
+  referrer: z.string().optional(),
+  utmSource: z.string().optional(),
+  utmMedium: z.string().optional(),
+  utmCampaign: z.string().optional(),
   files: z
     .array(
       z.object({
@@ -53,6 +58,11 @@ export async function POST(request: NextRequest) {
         description: data.description,
         plannedDate: data.plannedDate || null,
         status: "NEW",
+        landingPage: data.landingPage || null,
+        referrer: data.referrer || null,
+        utmSource: data.utmSource || null,
+        utmMedium: data.utmMedium || null,
+        utmCampaign: data.utmCampaign || null,
         files: data.files && data.files.length > 0
           ? {
               create: data.files.map((f) => ({

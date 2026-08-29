@@ -20,6 +20,7 @@ import {
   Zap,
   ExternalLink,
   ChevronRight,
+  Globe,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -39,6 +40,7 @@ export function AdminSidebar() {
     { label: "İş Başvuruları", href: "/admin/basvurular", icon: UserCheck },
     { label: "İletişim Mesajları", href: "/admin/mesajlar", icon: Mail },
     { label: "Site & İletişim Ayarları", href: "/admin/ayarlar", icon: Settings },
+    { label: "SEO & Otorite Merkezi", href: "/admin/seo", icon: Globe },
     { label: "Yöneticiler", href: "/admin/kullanicilar", icon: Users },
   ];
 

@@ -841,7 +841,35 @@ Kablo başlığı uygulamaları, röle koordinasyonu, selektivite ayarları ve m
       },
     });
   }
-  console.log("Sectors seeded.");
+  // 5. Technical Guides
+  const { TECHNICAL_GUIDES } = await import("../data/technicalGuides");
+  for (const g of TECHNICAL_GUIDES) {
+    await prisma.technicalGuide.upsert({
+      where: { slug: g.slug },
+      update: {
+        title: g.title,
+        summary: g.summary,
+        content: g.contentHtml,
+        category: g.category,
+        readTime: g.readTime,
+        metaTitle: g.metaTitle,
+        metaDesc: g.metaDesc,
+        faqItems: g.faqs ? JSON.stringify(g.faqs) : null,
+      },
+      create: {
+        slug: g.slug,
+        title: g.title,
+        summary: g.summary,
+        content: g.contentHtml,
+        category: g.category,
+        readTime: g.readTime,
+        metaTitle: g.metaTitle,
+        metaDesc: g.metaDesc,
+        faqItems: g.faqs ? JSON.stringify(g.faqs) : null,
+      },
+    });
+  }
+  console.log("Technical Guides seeded.");
 
   console.log("Database seed completed successfully!");
 }
