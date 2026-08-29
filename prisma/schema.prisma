@@ -1,0 +1,260 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("ADMIN") // ADMIN, EDITOR
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ServiceCategory {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  description String?
+  order       Int       @default(0)
+  services    Service[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Service {
+  id          String           @id @default(cuid())
+  title       String
+  slug        String           @unique
+  shortDesc   String
+  content     String
+  iconName    String?
+  image       String?
+  features    String?          // JSON array of strings
+  categoryId  String
+  category    ServiceCategory  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  published   Boolean          @default(true)
+  order       Int              @default(0)
+  metaTitle   String?
+  metaDesc    String?
+  projects    ProjectService[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+}
+
+model Sector {
+  id          String          @id @default(cuid())
+  title       String
+  slug        String          @unique
+  shortDesc   String
+  content     String
+  iconName    String?
+  image       String?
+  solutions   String?         // JSON array of strings
+  published   Boolean         @default(true)
+  order       Int             @default(0)
+  metaTitle   String?
+  metaDesc    String?
+  projects    ProjectSector[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+}
+
+model Project {
+  id           String           @id @default(cuid())
+  title        String
+  slug         String           @unique
+  client       String?
+  location     String?
+  year         Int?
+  categoryType String           // ELEKTRIK, OTOMASYON, ENERJI, GES, KAMU, ENDUSTRIYEL
+  scope        String?          // Proje kapsamı
+  workDone     String?          // JSON string
+  technologies String?          // JSON string
+  capacity     String?          // Kurulu güç / kapasite
+  coverImage   String?
+  documentUrl  String?
+  status       String           @default("COMPLETED") // COMPLETED, ONGOING
+  featured     Boolean          @default(false)
+  published    Boolean          @default(true)
+  metaTitle    String?
+  metaDesc     String?
+  images       ProjectImage[]
+  services     ProjectService[]
+  sectors      ProjectSector[]
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+}
+
+model ProjectImage {
+  id        String   @id @default(cuid())
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  imageUrl  String
+  caption   String?
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model ProjectService {
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  serviceId String
+  service   Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@id([projectId, serviceId])
+}
+
+model ProjectSector {
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  sectorId  String
+  sector    Sector  @relation(fields: [sectorId], references: [id], onDelete: Cascade)
+
+  @@id([projectId, sectorId])
+}
+
+model Reference {
+  id        String   @id @default(cuid())
+  company   String
+  logoUrl   String?
+  industry  String?
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Certificate {
+  id          String   @id @default(cuid())
+  title       String
+  code        String?  // ISO 9001, ISO 14001 vb.
+  issuer      String?
+  issueYear   Int?
+  fileUrl     String?
+  imageUrl    String?
+  order       Int      @default(0)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model News {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  summary     String
+  content     String
+  coverImage  String?
+  category    String   @default("Teknik")
+  published   Boolean  @default(true)
+  publishedAt DateTime @default(now())
+  metaTitle   String?
+  metaDesc    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Career {
+  id           String           @id @default(cuid())
+  title        String
+  department   String
+  location     String
+  workType     String           // Tam Zamanlı, Hibrit, Proje Bazlı
+  description  String
+  requirements String           // JSON or formatted text
+  deadline     DateTime?
+  active       Boolean          @default(true)
+  applications JobApplication[]
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+}
+
+model JobApplication {
+  id          String   @id @default(cuid())
+  careerId    String
+  career      Career   @relation(fields: [careerId], references: [id], onDelete: Cascade)
+  fullName    String
+  email       String
+  phone       String
+  cvUrl       String
+  coverLetter String?
+  status      String   @default("NEW") // NEW, REVIEWED, CONTACTED, REJECTED
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model QuoteRequest {
+  id              String      @id @default(cuid())
+  referenceNo     String      @unique // SP-2026-XXXX
+  companyName     String
+  contactPerson   String
+  phone           String
+  email           String
+  city            String
+  projectLocation String?
+  serviceType     String
+  description     String
+  plannedDate     String?
+  status          String      @default("NEW") // NEW, IN_REVIEW, PREPARING, SENT, WON, LOST
+  adminNotes      String?
+  files           QuoteFile[]
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+}
+
+model QuoteFile {
+  id             String       @id @default(cuid())
+  quoteRequestId String
+  quoteRequest   QuoteRequest @relation(fields: [quoteRequestId], references: [id], onDelete: Cascade)
+  fileName       String
+  fileUrl        String
+  fileSize       Int
+  mimeType       String
+  createdAt      DateTime     @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  fullName  String
+  email     String
+  phone     String?
+  subject   String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SiteSetting {
+  id             String   @id @default("default")
+  companyName    String   @default("Soykan Power Mühendislik")
+  phone          String?
+  email          String?
+  address        String?
+  workingHours   String?
+  mapEmbedUrl    String?
+  linkedinUrl    String?
+  instagramUrl   String?
+  twitterUrl     String?
+  facebookUrl    String?
+  footerText     String?
+  aboutSummary   String?
+  updatedAt      DateTime @updatedAt
+}
+
+model SeoPage {
+  id          String   @id @default(cuid())
+  path        String   @unique
+  title       String
+  description String
+  keywords    String?
+  ogImage     String?
+  updatedAt   DateTime @updatedAt
+}
