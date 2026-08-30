@@ -3,6 +3,7 @@ import { prisma } from "@/lib/db";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { IntroSection } from "@/components/sections/IntroSection";
 import { ActivityAreasSection } from "@/components/sections/ActivityAreasSection";
+import { ProjectConfiguratorSection } from "@/components/sections/ProjectConfiguratorSection";
 import { ServicesGridSection } from "@/components/sections/ServicesGridSection";
 import { WhySoykanSection } from "@/components/sections/WhySoykanSection";
 import { SectorsSection } from "@/components/sections/SectorsSection";
@@ -75,28 +76,31 @@ export default async function HomePage() {
         {/* 3. Main Activity Areas */}
         <ActivityAreasSection />
 
-        {/* 4. Services Grid */}
+        {/* 4. Interactive Project & Power Configurator */}
+        <ProjectConfiguratorSection />
+
+        {/* 5. Services Grid */}
         <ServicesGridSection services={services} />
 
-        {/* 5. Why Soykan Power? */}
+        {/* 6. Why Soykan Power? */}
         <WhySoykanSection />
 
-        {/* 6. Sectoral Solutions */}
+        {/* 7. Sectoral Solutions */}
         <SectorsSection sectors={sectors} />
 
-        {/* 7. Featured Projects */}
+        {/* 8. Featured Projects */}
         <FeaturedProjectsSection projects={projects} />
 
-        {/* 8. Engineering Approach */}
+        {/* 9. Engineering Approach */}
         <EngineeringApproachSection />
 
-        {/* 9. Process Timeline (01 Keşif -> 07 Bakım) */}
+        {/* 10. Process Timeline (01 Keşif -> 07 Bakım) */}
         <ProcessTimelineSection />
 
-        {/* 10. Technologies / Ecosystem */}
+        {/* 11. Technologies / Ecosystem */}
         <TechStackSection />
 
-        {/* 11 & 12. References */}
+        {/* 12. References */}
         <ReferencesSection references={references} />
 
         {/* 13. Certificates */}

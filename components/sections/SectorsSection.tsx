@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Factory, ChevronRight } from "lucide-react";
+import { ArrowRight, Factory, ChevronRight, Sparkles } from "lucide-react";
 
 interface SectorItem {
   id: string;
@@ -19,27 +19,28 @@ export function SectorsSection({ sectors }: SectorsSectionProps) {
   const displaySectors = sectors.slice(0, 6);
 
   return (
-    <section className="py-20 bg-white relative">
+    <section className="py-24 bg-slate-900 text-white relative border-y border-slate-800/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
           <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-md bg-amber-500/10 text-amber-700 text-xs font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 text-amber-400 text-xs font-bold uppercase tracking-wider border border-amber-500/25">
+              <Sparkles className="w-3.5 h-3.5" />
               <span>Sektörel Uzmanlık</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight">
-              Farklı Endüstrilere Özel Mühendislik Çözümleri
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
+              Endüstrinize Özel Mühendislik Çözümleri
             </h2>
-            <p className="text-sm sm:text-base text-slate-600">
-              Her sektörün dinamikleri, güvenlik gereksinimleri ve enerji ihtiyaçları farklıdır. Sektörünüze özel geliştirilmiş çözümlerimizi keşfedin.
+            <p className="text-sm sm:text-base text-slate-400">
+              Her sektörün çalışma dinamikleri, elektriksel güvenlik gereksinimleri ve enerji ihtiyaçları farklıdır. Sektörünüze özel geliştirilmiş mimarileri keşfedin.
             </p>
           </div>
 
           <Link
             href="/sektorler"
-            className="inline-flex items-center space-x-2 text-sm font-bold text-slate-950 hover:text-amber-600 transition-colors shrink-0"
+            className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-2xl bg-slate-950 hover:bg-slate-800 border border-slate-700 text-white hover:border-amber-500/40 text-sm font-bold transition-all shrink-0 self-start md:self-end shadow-xl group"
           >
             <span>Tüm Sektörleri İncele</span>
-            <ArrowRight className="w-4 h-4 text-amber-500" />
+            <ArrowRight className="w-4 h-4 text-amber-400 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 
@@ -47,25 +48,25 @@ export function SectorsSection({ sectors }: SectorsSectionProps) {
           {displaySectors.map((sec) => (
             <div
               key={sec.id}
-              className="group p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-500/50 hover:bg-slate-950 hover:text-white transition-all duration-300 flex flex-col justify-between"
+              className="group p-7 rounded-3xl bg-slate-950/80 border border-slate-800/90 hover:border-amber-500/50 transition-all duration-300 flex flex-col justify-between shadow-xl backdrop-blur-xl hover:-translate-y-1.5"
             >
               <div>
-                <div className="w-10 h-10 rounded-xl bg-amber-500/10 group-hover:bg-amber-500/20 text-amber-600 group-hover:text-amber-400 flex items-center justify-center mb-4 transition-colors">
-                  <Factory className="w-5 h-5" />
+                <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
+                  <Factory className="w-6 h-6" />
                 </div>
 
-                <h3 className="text-lg font-bold text-slate-900 group-hover:text-white transition-colors mb-2">
+                <h3 className="text-xl font-bold text-white group-hover:text-amber-400 transition-colors mb-2.5">
                   {sec.title}
                 </h3>
 
-                <p className="text-xs text-slate-600 group-hover:text-slate-400 leading-relaxed mb-6">
+                <p className="text-xs sm:text-sm text-slate-400 leading-relaxed mb-6 line-clamp-3">
                   {sec.shortDesc}
                 </p>
               </div>
 
               <Link
                 href={`/sektorler/${sec.slug}`}
-                className="inline-flex items-center text-xs font-bold text-amber-600 group-hover:text-amber-400 transition-colors"
+                className="inline-flex items-center text-xs font-extrabold text-amber-400 group-hover:text-amber-300 pt-4 border-t border-slate-900 transition-colors justify-between"
               >
                 <span>Sektörel Çözümleri Gör</span>
                 <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />

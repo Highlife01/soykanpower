@@ -1,5 +1,18 @@
 import type { Metadata } from "next";
+import { Plus_Jakarta_Sans, Outfit } from "next/font/google";
 import "./globals.css";
+
+const sansFont = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const headingFont = Outfit({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.soykanpower.com"),
@@ -60,8 +73,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="tr" className="scroll-smooth">
-      <body className="antialiased bg-slate-950 text-slate-100 flex flex-col min-h-screen">
+    <html lang="tr" className={`${sansFont.variable} ${headingFont.variable} scroll-smooth`}>
+      <body className="font-sans antialiased bg-slate-950 text-slate-100 flex flex-col min-h-screen selection:bg-amber-400 selection:text-slate-950">
         {children}
       </body>
     </html>
