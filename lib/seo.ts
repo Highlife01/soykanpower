@@ -134,14 +134,22 @@ export function generateServiceSchema(service: {
   };
 }
 
-export function generateRegionPageSchema(region: RegionData) {
+export function generateRegionPageSchema(region: {
+  name: string;
+  slug: string;
+  metaTitle?: string;
+  title?: string;
+  metaDesc?: string;
+  [key: string]: any;
+}) {
+  const pageTitle = region.metaTitle || region.title || `${region.name} Elektrik Taahhüt | Soykan Power`;
   return {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": `${BASE_SITE_URL}/bolgeler/${region.slug}#webpage`,
     url: `${BASE_SITE_URL}/bolgeler/${region.slug}`,
-    name: region.title,
-    description: region.metaDesc,
+    name: pageTitle,
+    description: region.metaDesc || "",
     about: {
       "@type": "Service",
       name: `${region.name} Elektrik Taahhüt ve Mühendislik Hizmetleri`,
@@ -159,20 +167,27 @@ export function generateRegionPageSchema(region: RegionData) {
   };
 }
 
-export function generateRegionServiceSchema(regionService: RegionServiceData) {
+export function generateRegionServiceSchema(regionService: {
+  regionSlug: string;
+  serviceSlug: string;
+  h1: string;
+  metaDesc?: string;
+  regionName?: string;
+  [key: string]: any;
+}) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
     "@id": `${BASE_SITE_URL}/bolgeler/${regionService.regionSlug}/${regionService.serviceSlug}#service`,
     name: regionService.h1,
-    description: regionService.metaDesc,
+    description: regionService.metaDesc || "",
     url: `${BASE_SITE_URL}/bolgeler/${regionService.regionSlug}/${regionService.serviceSlug}`,
     provider: {
       "@id": ORGANIZATION_ID,
     },
     areaServed: {
       "@type": "AdministrativeArea",
-      name: regionService.regionSlug.toUpperCase(),
+      name: regionService.regionName || regionService.regionSlug.toUpperCase(),
     },
   };
 }

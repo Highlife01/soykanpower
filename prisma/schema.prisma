@@ -29,41 +29,43 @@ model ServiceCategory {
 }
 
 model Service {
-  id          String           @id @default(cuid())
-  title       String
-  slug        String           @unique
-  shortDesc   String
-  content     String
-  iconName    String?
-  image       String?
-  features    String?          // JSON array of strings
-  categoryId  String
-  category    ServiceCategory  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  published   Boolean          @default(true)
-  order       Int              @default(0)
-  metaTitle   String?
-  metaDesc    String?
-  projects    ProjectService[]
-  createdAt   DateTime         @default(now())
-  updatedAt   DateTime         @updatedAt
+  id             String           @id @default(cuid())
+  title          String
+  slug           String           @unique
+  shortDesc      String
+  content        String
+  iconName       String?
+  image          String?
+  features       String?          // JSON array of strings
+  categoryId     String
+  category       ServiceCategory  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  published      Boolean          @default(true)
+  order          Int              @default(0)
+  metaTitle      String?
+  metaDesc       String?
+  projects       ProjectService[]
+  regionServices RegionService[]
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
 }
 
 model Sector {
-  id          String          @id @default(cuid())
-  title       String
-  slug        String          @unique
-  shortDesc   String
-  content     String
-  iconName    String?
-  image       String?
-  solutions   String?         // JSON array of strings
-  published   Boolean         @default(true)
-  order       Int             @default(0)
-  metaTitle   String?
-  metaDesc    String?
-  projects    ProjectSector[]
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
+  id            String          @id @default(cuid())
+  title         String
+  slug          String          @unique
+  shortDesc     String
+  content       String
+  iconName      String?
+  image         String?
+  solutions     String?         // JSON array of strings
+  published     Boolean         @default(true)
+  order         Int             @default(0)
+  metaTitle     String?
+  metaDesc      String?
+  projects      ProjectSector[]
+  regionSectors RegionSector[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
 }
 
 model Project {
@@ -157,6 +159,22 @@ model News {
   publishedAt DateTime @default(now())
   metaTitle   String?
   metaDesc    String?
+  // Multilingual fields
+  titleEn     String?
+  titleAr     String?
+  titleRu     String?
+  summaryEn   String?
+  summaryAr   String?
+  summaryRu   String?
+  contentEn   String?
+  contentAr   String?
+  contentRu   String?
+  metaTitleEn String?
+  metaTitleAr String?
+  metaTitleRu String?
+  metaDescEn  String?
+  metaDescAr  String?
+  metaDescRu  String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -273,6 +291,164 @@ model Redirect {
   createdAt   DateTime @default(now())
 }
 
+model Country {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  isoCode   String   @unique
+  active    Boolean  @default(true)
+  regions   Region[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Region {
+  id               String               @id @default(cuid())
+  name             String
+  slug             String               @unique
+  countryId        String?
+  country          Country?             @relation(fields: [countryId], references: [id], onDelete: SetNull)
+  regionType       String               @default("CITY") // CITY, PROVINCE, SPECIAL
+  shortDescription String?
+  description      String?
+  heroTitle        String?
+  heroDescription  String?
+  heroImage        String?
+  isServiceArea    Boolean              @default(true)
+  isFeatured       Boolean              @default(false)
+  isPublished      Boolean              @default(true)
+  indexable        Boolean              @default(true)
+  sortOrder        Int                  @default(0)
+  status           String               @default("PUBLISHED") // DRAFT, READY, PUBLISHED, NOINDEX, ARCHIVED
+  metaTitle        String?
+  metaDesc         String?
+  districts        District[]
+  regionServices   RegionService[]
+  regionSectors    RegionSector[]
+  regionFaqs       RegionFaq[]
+  contentBlocks    RegionContentBlock[]
+  landingPages     SeoLandingPage[]
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+}
+
+model District {
+  id          String   @id @default(cuid())
+  regionId    String
+  region      Region   @relation(fields: [regionId], references: [id], onDelete: Cascade)
+  name        String
+  slug        String
+  isPublished Boolean  @default(false)
+  indexable   Boolean  @default(false)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([regionId, slug])
+}
+
+model RegionService {
+  id                String   @id @default(cuid())
+  regionId          String
+  region            Region   @relation(fields: [regionId], references: [id], onDelete: Cascade)
+  serviceId         String
+  service           Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  enabled           Boolean  @default(true)
+  isFeatured        Boolean  @default(false)
+  customTitle       String?
+  customDescription String?
+  customContent     String?
+  heroImage         String?
+  indexable         Boolean  @default(true)
+  published         Boolean  @default(true)
+  sortOrder         Int      @default(0)
+  metaTitle         String?
+  metaDesc          String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@unique([regionId, serviceId])
+}
+
+model RegionSector {
+  id                String   @id @default(cuid())
+  regionId          String
+  region            Region   @relation(fields: [regionId], references: [id], onDelete: Cascade)
+  sectorId          String
+  sector            Sector   @relation(fields: [sectorId], references: [id], onDelete: Cascade)
+  enabled           Boolean  @default(true)
+  isFeatured        Boolean  @default(false)
+  customTitle       String?
+  customDescription String?
+  sortOrder         Int      @default(0)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@unique([regionId, sectorId])
+}
+
+model RegionFaq {
+  id        String   @id @default(cuid())
+  regionId  String
+  region    Region   @relation(fields: [regionId], references: [id], onDelete: Cascade)
+  serviceId String?
+  sectorId  String?
+  question  String
+  answer    String
+  sortOrder Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RegionContentBlock {
+  id        String   @id @default(cuid())
+  regionId  String
+  region    Region   @relation(fields: [regionId], references: [id], onDelete: Cascade)
+  serviceId String?
+  blockType String   // HERO, INTRO, SERVICES, SECTORS, PROJECTS, PROCESS, ADVANTAGES, FAQ, CTA, FORM
+  title     String?
+  subtitle  String?
+  content   String?
+  mediaUrl  String?
+  settings  String?  // JSON string for configuration
+  sortOrder Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SeoLandingPage {
+  id              String   @id @default(cuid())
+  pageName        String
+  pageType        String   @default("CITY") // CITY, CITY_SERVICE, CITY_SECTOR, SERVICE, SECTOR, CUSTOM
+  regionId        String?
+  region          Region?  @relation(fields: [regionId], references: [id], onDelete: Cascade)
+  serviceId       String?
+  sectorId        String?
+  slug            String   @unique
+  h1              String?
+  heroTitle       String?
+  heroDescription String?
+  introContent    String?
+  mainContent     String?
+  ctaTitle        String?
+  ctaDescription  String?
+  seoTitle        String?
+  metaDescription String?
+  canonical       String?
+  ogTitle         String?
+  ogDescription   String?
+  ogImage         String?
+  indexable       Boolean  @default(true)
+  followable      Boolean  @default(true)
+  status          String   @default("PUBLISHED") // DRAFT, READY, PUBLISHED, NOINDEX, ARCHIVED
+  schemaType      String   @default("Service") // Organization, Service, LocalBusiness, FAQPage
+  sortOrder       Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
 model TechnicalGuide {
   id                 String   @id @default(cuid())
   slug               String   @unique
@@ -293,4 +469,16 @@ model TechnicalGuide {
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
 }
+
+model SeoTemplate {
+  id           String   @id @default(cuid())
+  templateType String   @unique // CITY, CITY_SERVICE, CITY_SECTOR, SERVICE, SECTOR, BLOG, PROJECT
+  titlePattern String
+  descPattern  String
+  h1Pattern    String?
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
 

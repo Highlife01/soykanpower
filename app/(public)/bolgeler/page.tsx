@@ -2,26 +2,25 @@ import React from "react";
 import Link from "next/link";
 import { Metadata } from "next";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
-import { REGIONS } from "@/data/regions";
+import { prisma } from "@/lib/db";
 import {
   MapPin,
   Building2,
   ArrowRight,
   ShieldCheck,
-  Zap,
-  Cpu,
-  SunMedium,
-  CheckCircle2,
-  Layers,
-  Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { generateBreadcrumbSchema } from "@/lib/seo";
+
+export const revalidate = 3600; // 1 hour ISR revalidation
 
 export const metadata: Metadata = {
   title: "Hizmet Verdiğimiz Bölgeler & Sanayi Merkezleri | Soykan Power",
   description:
     "Soykan Power; Adana merkezli olarak Mersin, Gaziantep, Hatay, Osmaniye, Antalya, Isparta, Niğde ve KKTC sanayi tesisleri ve otellerine elektrik taahhüt, trafo, otomasyon ve GES hizmeti sunar.",
+  alternates: {
+    canonical: "/bolgeler",
+  },
   openGraph: {
     title: "Hizmet Verdiğimiz Bölgeler | Soykan Power Mühendislik",
     description:
@@ -29,7 +28,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RegionsIndexPage() {
+export default async function RegionsIndexPage() {
+  const dbRegions = await prisma.region.findMany({
+    where: { isPublished: true },
+    include: {
+      districts: {
+        where: { isPublished: true },
+        orderBy: { sortOrder: "asc" },
+      },
+      regionServices: {
+        where: { published: true },
+        include: { service: true },
+      },
+    },
+    orderBy: { sortOrder: "asc" },
+  });
+
   const breadcrumbs = [{ label: "Hizmet Bölgeleri" }];
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Ana Sayfa", url: "/" },
@@ -64,88 +78,95 @@ export default function RegionsIndexPage() {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
-        {/* Regions Grid */}
+        {/* Regions Grid from Database */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {REGIONS.map((region) => (
-            <div
-              key={region.slug}
-              className={`p-7 rounded-3xl bg-slate-900 border transition-all duration-300 flex flex-col justify-between hover:scale-[1.02] shadow-xl group relative overflow-hidden ${
-                region.isHeadquarters
-                  ? "border-amber-500/50 bg-gradient-to-b from-slate-900 via-slate-900 to-amber-950/20"
-                  : "border-slate-800 hover:border-amber-500/40"
-              }`}
-            >
-              {region.isHeadquarters && (
-                <div className="absolute top-4 right-4 px-2.5 py-0.5 rounded-full bg-amber-500 text-slate-950 font-black text-[10px] uppercase tracking-wider shadow-md">
-                  Ana Merkez & Otorite
-                </div>
-              )}
-
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 rounded-2xl bg-slate-950 border border-slate-800 flex items-center justify-center text-amber-400 group-hover:border-amber-500/40 transition-colors">
-                    <Building2 className="w-6 h-6" />
+          {dbRegions.map((region) => {
+            const isHQ = region.slug === "adana";
+            return (
+              <div
+                key={region.id}
+                className={`p-7 rounded-3xl bg-slate-900 border transition-all duration-300 flex flex-col justify-between hover:scale-[1.02] shadow-xl group relative overflow-hidden ${
+                  isHQ
+                    ? "border-amber-500/50 bg-gradient-to-b from-slate-900 via-slate-900 to-amber-950/20"
+                    : "border-slate-800 hover:border-amber-500/40"
+                }`}
+              >
+                {isHQ && (
+                  <div className="absolute top-4 right-4 px-2.5 py-0.5 rounded-full bg-amber-500 text-slate-950 font-black text-[10px] uppercase tracking-wider shadow-md">
+                    Ana Merkez & Otorite
                   </div>
-                  <div>
-                    <h2 className="text-xl font-bold text-white group-hover:text-amber-400 transition-colors">
-                      {region.name}
-                    </h2>
-                    <span className="text-xs text-slate-400 block mt-0.5">
-                      {region.isHeadquarters ? "Merkez Ofis & Tesisler" : "Bölgesel Hizmet Sahası"}
-                    </span>
-                  </div>
-                </div>
+                )}
 
-                <p className="text-xs sm:text-sm text-slate-300 line-clamp-3 leading-relaxed">
-                  {region.shortDesc}
-                </p>
-
-                {/* Focus Sectors */}
-                <div className="pt-2 border-t border-slate-800/80 space-y-2">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
-                    Öne Çıkan Sanayi Alanları:
-                  </span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {region.keyIndustries.slice(0, 3).map((ind, idx) => (
-                      <span
-                        key={idx}
-                        className="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-slate-300 font-medium"
-                      >
-                        {ind}
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-12 h-12 rounded-2xl bg-slate-950 border border-slate-800 flex items-center justify-center text-amber-400 group-hover:border-amber-500/40 transition-colors">
+                      <Building2 className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h2 className="text-xl font-bold text-white group-hover:text-amber-400 transition-colors">
+                        {region.name}
+                      </h2>
+                      <span className="text-xs text-slate-400 block mt-0.5">
+                        {isHQ ? "Merkez Ofis & Tesisler" : "Bölgesel Hizmet Sahası"}
                       </span>
-                    ))}
+                    </div>
                   </div>
-                </div>
 
-                {/* Target Districts / OSBs */}
-                <div className="space-y-1.5">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
-                    Hizmet Verilen İlçeler & OSB'ler:
-                  </span>
-                  <p className="text-xs text-slate-400 line-clamp-1">
-                    {region.targetDistricts.join(" • ")}
+                  <p className="text-xs sm:text-sm text-slate-300 line-clamp-3 leading-relaxed">
+                    {region.shortDescription || region.description}
                   </p>
+
+                  {/* Active Region Services */}
+                  {region.regionServices.length > 0 && (
+                    <div className="pt-2 border-t border-slate-800/80 space-y-2">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
+                        Öne Çıkan Mühendislik Çözümleri:
+                      </span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {region.regionServices.slice(0, 3).map((rs) => (
+                          <span
+                            key={rs.id}
+                            className="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-slate-300 font-medium"
+                          >
+                            {rs.service.title}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Target Districts */}
+                  {region.districts.length > 0 && (
+                    <div className="space-y-1.5">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
+                        Hizmet Verilen İlçeler & OSB'ler:
+                      </span>
+                      <p className="text-xs text-slate-400 line-clamp-1">
+                        {region.districts.map((d) => d.name).join(" • ")}
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                <div className="pt-6 mt-6 border-t border-slate-800/80 flex items-center justify-between">
+                  <Link
+                    href={`/bolgeler/${region.slug}`}
+                    className="inline-flex items-center text-xs font-bold text-amber-400 hover:text-amber-300 uppercase tracking-wider transition-colors group-hover:translate-x-1"
+                  >
+                    <span>{region.name} Bölge Çözümleri</span>
+                    <ArrowRight className="w-4 h-4 ml-1.5" />
+                  </Link>
+
+                  <Link
+                    href={`/teklif-al?regionId=${region.id}&sourcePage=/bolgeler/${region.slug}`}
+                    className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-slate-300 text-xs font-bold transition-colors"
+                  >
+                    Teklif Al
+                  </Link>
                 </div>
               </div>
-
-              <div className="pt-6 mt-6 border-t border-slate-800/80 flex items-center justify-between">
-                <Link
-                  href={`/bolgeler/${region.slug}`}
-                  className="inline-flex items-center text-xs font-bold text-amber-400 hover:text-amber-300 uppercase tracking-wider transition-colors group-hover:translate-x-1"
-                >
-                  <span>{region.name} Bölge Çözümleri</span>
-                  <ArrowRight className="w-4 h-4 ml-1.5" />
-                </Link>
-
-                <Link
-                  href="/teklif-al"
-                  className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-slate-300 text-xs font-bold transition-colors"
-                >
-                  Teklif Al
-                </Link>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Bottom Regional Capability Banner */}

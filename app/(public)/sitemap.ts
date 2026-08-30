@@ -7,7 +7,7 @@ import { TECHNICAL_GUIDES } from "@/data/technicalGuides";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.soykanpower.com";
 
-  // Static routes
+  // Static core routes
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${baseUrl}`, lastModified: new Date(), changeFrequency: "daily", priority: 1.0 },
     { url: `${baseUrl}/kurumsal/hakkimizda`, lastModified: new Date(), priority: 0.8 },
@@ -24,7 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/bilgi-merkezi`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${baseUrl}/projeler`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${baseUrl}/teklif-al`, lastModified: new Date(), priority: 0.95 },
-    { url: `${baseUrl}/haberler`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/haberler`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.85 },
     { url: `${baseUrl}/kariyer`, lastModified: new Date(), priority: 0.7 },
     { url: `${baseUrl}/iletisim`, lastModified: new Date(), priority: 0.85 },
     { url: `${baseUrl}/yasal/kvkk`, lastModified: new Date(), priority: 0.5 },
@@ -56,21 +56,43 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.85,
   }));
 
-  // Regional landing pages
-  const regionRoutes: MetadataRoute.Sitemap = REGIONS.map((r) => ({
+  // Dynamic regions from DB (with fallback)
+  const dbRegions = await prisma.region.findMany({
+    where: { isPublished: true, indexable: true },
+    select: { slug: true, updatedAt: true },
+  });
+  const regionSlugs = dbRegions.length > 0 ? dbRegions : REGIONS.map((r) => ({ slug: r.slug, updatedAt: new Date() }));
+  const regionRoutes: MetadataRoute.Sitemap = regionSlugs.map((r) => ({
     url: `${baseUrl}/bolgeler/${r.slug}`,
-    lastModified: new Date(),
+    lastModified: r.updatedAt,
     changeFrequency: "weekly",
-    priority: r.isHeadquarters ? 0.95 : 0.85,
+    priority: r.slug === "adana" ? 0.95 : 0.85,
   }));
 
-  // Regional + Service combination pages
-  const regionServiceRoutes: MetadataRoute.Sitemap = REGION_SERVICES.map((rs) => ({
-    url: `${baseUrl}/bolgeler/${rs.regionSlug}/${rs.serviceSlug}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.85,
-  }));
+  // Dynamic region-services from DB
+  const dbRegionServices = await prisma.regionService.findMany({
+    where: { published: true, indexable: true },
+    include: {
+      region: { select: { slug: true } },
+      service: { select: { slug: true } },
+    },
+  });
+  let regionServiceRoutes: MetadataRoute.Sitemap = [];
+  if (dbRegionServices.length > 0) {
+    regionServiceRoutes = dbRegionServices.map((rs) => ({
+      url: `${baseUrl}/bolgeler/${rs.region.slug}/${rs.service.slug}`,
+      lastModified: rs.updatedAt,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    }));
+  } else {
+    regionServiceRoutes = REGION_SERVICES.map((rs) => ({
+      url: `${baseUrl}/bolgeler/${rs.regionSlug}/${rs.serviceSlug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
+    }));
+  }
 
   // Technical Knowledge Hub guides
   const guideRoutes: MetadataRoute.Sitemap = TECHNICAL_GUIDES.map((g) => ({
@@ -92,7 +114,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  // Dynamic news from DB
+  // Dynamic news / blog from DB
   const news = await prisma.news.findMany({
     where: { published: true },
     select: { slug: true, updatedAt: true },
@@ -101,7 +123,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${baseUrl}/haberler/${n.slug}`,
     lastModified: n.updatedAt,
     changeFrequency: "weekly",
-    priority: 0.75,
+    priority: 0.8,
   }));
 
   return [

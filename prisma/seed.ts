@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
+import { TECHNICAL_GUIDES } from "../data/technicalGuides";
+import { blogPostsData } from "../data/blogPosts";
 
 const prisma = new PrismaClient();
 
@@ -870,6 +872,67 @@ Kablo başlığı uygulamaları, röle koordinasyonu, selektivite ayarları ve m
     });
   }
   console.log("Technical Guides seeded.");
+
+  // 7. Seed 10 Multilingual Blog Articles
+  for (const post of blogPostsData) {
+    await prisma.news.upsert({
+      where: { slug: post.slug },
+      update: {
+        title: post.title,
+        summary: post.summary,
+        content: post.content,
+        coverImage: post.coverImage,
+        category: post.category,
+        published: true,
+        publishedAt: post.publishedAt,
+        metaTitle: post.metaTitle,
+        metaDesc: post.metaDesc,
+        titleEn: post.titleEn,
+        titleAr: post.titleAr,
+        titleRu: post.titleRu,
+        summaryEn: post.summaryEn,
+        summaryAr: post.summaryAr,
+        summaryRu: post.summaryRu,
+        contentEn: post.contentEn,
+        contentAr: post.contentAr,
+        contentRu: post.contentRu,
+        metaTitleEn: post.metaTitleEn,
+        metaTitleAr: post.metaTitleAr,
+        metaTitleRu: post.metaTitleRu,
+        metaDescEn: post.metaDescEn,
+        metaDescAr: post.metaDescAr,
+        metaDescRu: post.metaDescRu,
+      },
+      create: {
+        slug: post.slug,
+        title: post.title,
+        summary: post.summary,
+        content: post.content,
+        coverImage: post.coverImage,
+        category: post.category,
+        published: true,
+        publishedAt: post.publishedAt,
+        metaTitle: post.metaTitle,
+        metaDesc: post.metaDesc,
+        titleEn: post.titleEn,
+        titleAr: post.titleAr,
+        titleRu: post.titleRu,
+        summaryEn: post.summaryEn,
+        summaryAr: post.summaryAr,
+        summaryRu: post.summaryRu,
+        contentEn: post.contentEn,
+        contentAr: post.contentAr,
+        contentRu: post.contentRu,
+        metaTitleEn: post.metaTitleEn,
+        metaTitleAr: post.metaTitleAr,
+        metaTitleRu: post.metaTitleRu,
+        metaDescEn: post.metaDescEn,
+        metaDescAr: post.metaDescAr,
+        metaDescRu: post.metaDescRu,
+      },
+    });
+  }
+  console.log("10 Multilingual Blog Articles seeded.");
 
   console.log("Database seed completed successfully!");
 }

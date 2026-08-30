@@ -10,17 +10,13 @@ import {
   MapPin,
   Building2,
   Zap,
-  Cpu,
-  Server,
-  SunMedium,
-  CheckCircle2,
   ArrowRight,
   ShieldCheck,
   Phone,
   HelpCircle,
   FolderGit2,
   Factory,
-  Layers,
+  CheckCircle2,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import {
@@ -33,7 +29,16 @@ interface RegionPageProps {
   params: Promise<{ slug: string }>;
 }
 
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
+  const dbRegions = await prisma.region.findMany({
+    where: { isPublished: true },
+    select: { slug: true },
+  });
+  if (dbRegions.length > 0) {
+    return dbRegions.map((r) => ({ slug: r.slug }));
+  }
   return REGIONS.map((r) => ({ slug: r.slug }));
 }
 
@@ -41,12 +46,38 @@ export async function generateMetadata({
   params,
 }: RegionPageProps): Promise<Metadata> {
   const { slug } = await params;
+  
+  // Try DB first
+  const dbRegion = await prisma.region.findUnique({
+    where: { slug },
+  });
+
+  if (dbRegion) {
+    const title = dbRegion.metaTitle || `${dbRegion.name} Elektrik Taahhüt & Otomasyon | Soykan Power`;
+    const description = dbRegion.metaDesc || dbRegion.shortDescription || dbRegion.description || "";
+    return {
+      title,
+      description,
+      alternates: {
+        canonical: `/bolgeler/${dbRegion.slug}`,
+      },
+      openGraph: {
+        title,
+        description,
+        type: "website",
+      },
+    };
+  }
+
   const region = REGIONS.find((r) => r.slug === slug);
   if (!region) return {};
 
   return {
     title: region.metaTitle,
     description: region.metaDesc,
+    alternates: {
+      canonical: `/bolgeler/${region.slug}`,
+    },
     openGraph: {
       title: region.metaTitle,
       description: region.metaDesc,
@@ -57,39 +88,88 @@ export async function generateMetadata({
 
 export default async function RegionDetailPage({ params }: RegionPageProps) {
   const { slug } = await params;
-  const region = REGIONS.find((r) => r.slug === slug);
 
-  if (!region) {
+  // DB Region with relations
+  const dbRegion = await prisma.region.findUnique({
+    where: { slug },
+    include: {
+      districts: { where: { isPublished: true }, orderBy: { sortOrder: "asc" } },
+      regionServices: { where: { published: true }, include: { service: true } },
+      regionFaqs: { where: { published: true }, orderBy: { sortOrder: "asc" } },
+    },
+  });
+
+  const staticRegion = REGIONS.find((r) => r.slug === slug);
+
+  if (!dbRegion && !staticRegion) {
     notFound();
   }
 
-  // Get matching city projects from DB if any
+  const regionName = dbRegion?.name || staticRegion!.name;
+  const isHQ = slug === "adana";
+  const heroHeadline = dbRegion?.heroTitle || staticRegion?.heroHeadline || `${regionName} Elektrik Taahhüt & Mühendislik`;
+  const heroSubheadline = dbRegion?.heroDescription || staticRegion?.heroSubheadline || `${regionName} sanayi tesisleri ve projeleri için kesintisiz mühendislik çözümleri.`;
+  const shortDesc = dbRegion?.shortDescription || staticRegion?.shortDesc || "";
+  const longDesc = dbRegion?.description || staticRegion?.industrialProfile || "";
+
+  // Get matching city projects from DB
   const regionalProjects = await prisma.project.findMany({
     where: {
       published: true,
       OR: [
-        { location: { contains: region.name } },
-        { location: { contains: region.slug } },
+        { location: { contains: regionName } },
+        { location: { contains: slug } },
       ],
     },
     take: 3,
     orderBy: { year: "desc" },
   });
 
-  // Get matching high-intent region-service programmatic combinations
-  const regionServices = REGION_SERVICES.filter((rs) => rs.regionSlug === region.slug);
+  // Get matching region services
+  const dbRegionServices = dbRegion?.regionServices || [];
+  const fallbackRegionServices = REGION_SERVICES.filter((rs) => rs.regionSlug === slug);
+
+  // FAQs
+  const faqs = (dbRegion?.regionFaqs && dbRegion.regionFaqs.length > 0)
+    ? dbRegion.regionFaqs.map((f) => ({ question: f.question, answer: f.answer }))
+    : staticRegion?.faqs || [];
+
+  // Districts
+  const districtList = (dbRegion?.districts && dbRegion.districts.length > 0)
+    ? dbRegion.districts.map((d) => d.name)
+    : staticRegion?.targetDistricts || [];
 
   const breadcrumbs = [
     { label: "Hizmet Bölgeleri", href: "/bolgeler" },
-    { label: region.name },
+    { label: regionName },
   ];
 
-  const regionSchema = generateRegionPageSchema(region);
-  const faqSchema = generateFaqSchema(region.faqs);
+  const regionSchema = generateRegionPageSchema({
+    name: regionName,
+    slug: slug,
+    isHeadquarters: isHQ,
+    heroHeadline: heroHeadline,
+    heroSubheadline: heroSubheadline,
+    shortDesc: shortDesc,
+    industrialProfile: longDesc,
+    targetDistricts: districtList,
+    keyIndustries: staticRegion?.keyIndustries || ["Endüstriyel Tesisler", "OSB Fabrikaları", "Enerji Dağıtım"],
+    engineeringProcess: staticRegion?.engineeringProcess || [
+      { step: "01", title: "Saha Keşfi ve Yük Analizi", description: "Tesis yerinde incelenir, elektriksel güç ve kısa devre gereksinimleri hesaplanır." },
+      { step: "02", title: "Elektriksel Projelendirme", description: "BEDAŞ/EDAŞ/TEİAŞ şartnamelerine uygun uygulama projeleri hazırlanır." },
+      { step: "03", title: "Tip Testli Montaj ve İmalat", description: "Panolar, kablolama ve trafo köşkleri uzman ekiplerce kurulur." },
+      { step: "04", title: "Resmi Kabul ve Devreye Alma", description: "Tüm testler tamamlanarak dağıtım kurumu resmi kabulüyle sistem enerjilendirilir." },
+    ],
+    faqs: faqs,
+    metaTitle: dbRegion?.metaTitle || `${regionName} Elektrik Taahhüt | Soykan Power`,
+    metaDesc: dbRegion?.metaDesc || shortDesc,
+  });
+
+  const faqSchema = generateFaqSchema(faqs);
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Ana Sayfa", url: "/" },
     { name: "Hizmet Bölgeleri", url: "/bolgeler" },
-    { name: region.name, url: `/bolgeler/${region.slug}` },
+    { name: regionName, url: `/bolgeler/${slug}` },
   ]);
 
   return (
@@ -116,9 +196,9 @@ export default async function RegionDetailPage({ params }: RegionPageProps) {
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <span className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-md bg-amber-500/10 text-amber-400 text-xs font-bold uppercase tracking-wider border border-amber-500/20">
               <MapPin className="w-3.5 h-3.5" />
-              <span>{region.name} Bölgesi</span>
+              <span>{regionName} Bölgesi</span>
             </span>
-            {region.isHeadquarters ? (
+            {isHQ ? (
               <span className="px-3 py-1 rounded-md bg-amber-500 text-slate-950 text-xs font-extrabold uppercase tracking-wider">
                 Ana Merkez & Otorite
               </span>
@@ -130,17 +210,17 @@ export default async function RegionDetailPage({ params }: RegionPageProps) {
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white max-w-4xl leading-tight">
-            {region.heroHeadline}
+            {heroHeadline}
           </h1>
 
           <p className="text-sm sm:text-base text-slate-300 mt-4 max-w-3xl leading-relaxed">
-            {region.heroSubheadline}
+            {heroSubheadline}
           </p>
 
           <div className="pt-8 flex flex-wrap items-center gap-4">
-            <Link href={`/teklif-al?city=${encodeURIComponent(region.name)}`}>
+            <Link href={`/teklif-al?city=${encodeURIComponent(regionName)}&sourcePage=/bolgeler/${slug}`}>
               <Button variant="primary" size="lg">
-                <span>{region.name} İçin Teklif Alın</span>
+                <span>{regionName} İçin Teklif Alın</span>
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
@@ -165,35 +245,39 @@ export default async function RegionDetailPage({ params }: RegionPageProps) {
                 Bölgesel Sanayi & Tesis Profili
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-                {region.name} Sanayisi İçin Mühendislik Yaklaşımımız
+                {regionName} Sanayisi İçin Mühendislik Yaklaşımımız
               </h2>
             </div>
 
             <p className="text-sm text-slate-300 leading-relaxed">
-              {region.industrialProfile}
+              {longDesc}
             </p>
 
-            <p className="text-sm text-slate-400 leading-relaxed">
-              {region.shortDesc}
-            </p>
+            {shortDesc && (
+              <p className="text-sm text-slate-400 leading-relaxed">
+                {shortDesc}
+              </p>
+            )}
 
             {/* Target Districts */}
-            <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center">
-                <Building2 className="w-4 h-4 text-amber-400 mr-2" />
-                <span>Hizmet Verdiğimiz Sanayi Bölgeleri & İlçeler</span>
-              </h3>
-              <div className="flex flex-wrap gap-2 pt-1">
-                {region.targetDistricts.map((d, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 rounded-xl bg-slate-950 border border-slate-800 text-xs font-medium text-slate-200"
-                  >
-                    {d}
-                  </span>
-                ))}
+            {districtList.length > 0 && (
+              <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center">
+                  <Building2 className="w-4 h-4 text-amber-400 mr-2" />
+                  <span>Hizmet Verdiğimiz Sanayi Bölgeleri & İlçeler</span>
+                </h3>
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {districtList.map((d, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1 rounded-xl bg-slate-950 border border-slate-800 text-xs font-medium text-slate-200"
+                    >
+                      {d}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Right 4 cols: Key Industries Summary */}
@@ -203,7 +287,7 @@ export default async function RegionDetailPage({ params }: RegionPageProps) {
               <span>Odak Sektörler</span>
             </h3>
             <ul className="space-y-3 text-xs text-slate-300">
-              {region.keyIndustries.map((ind, idx) => (
+              {(staticRegion?.keyIndustries || ["Sanayi Tesisleri", "Tekstil ve İmalat", "Enerji ve GES"]).map((ind, idx) => (
                 <li key={idx} className="flex items-start space-x-2.5">
                   <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                   <span className="font-semibold text-slate-200">{ind}</span>
@@ -214,12 +298,12 @@ export default async function RegionDetailPage({ params }: RegionPageProps) {
             <div className="pt-4 border-t border-slate-800">
               <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
                 <span className="text-[11px] font-bold text-amber-400 block uppercase">
-                  {region.isHeadquarters ? "Merkez Koordinasyon" : "Hızlı Saha Ekibi"}
+                  {isHQ ? "Merkez Koordinasyon" : "Hızlı Saha Ekibi"}
                 </span>
                 <p className="text-[11px] text-slate-400 leading-relaxed">
-                  {region.isHeadquarters
+                  {isHQ
                     ? "Adana merkez ofisimizden projelendirme, pano üretimi ve 7/24 teknik servis desteği sunulmaktadır."
-                    : `${region.name} bölgesindeki projeleriniz için Adana merkezimizden tam donanımlı mühendis ve teknik ekipler sevk edilir.`}
+                    : `${regionName} bölgesindeki projeleriniz için Adana merkezimizden tam donanımlı mühendis ve teknik ekipler sevk edilir.`}
                 </p>
               </div>
             </div>
@@ -227,14 +311,14 @@ export default async function RegionDetailPage({ params }: RegionPageProps) {
         </div>
 
         {/* Section 2: High-Intent Regional Service Combinations */}
-        {regionServices.length > 0 && (
+        {(dbRegionServices.length > 0 || fallbackRegionServices.length > 0) && (
           <div className="space-y-8">
             <div className="border-b border-slate-800 pb-4">
               <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
                 Özel Mühendislik Hizmetleri
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
-                {region.name} İçin Branşlaşmış Hizmet Sayfaları
+                {regionName} İçin Branşlaşmış Hizmet Sayfaları
               </h2>
               <p className="text-xs sm:text-sm text-slate-400 mt-1">
                 Bölgenizdeki sanayi gereksinimlerine göre özelleştirilmiş teknik çözümlerimiz.
@@ -242,42 +326,67 @@ export default async function RegionDetailPage({ params }: RegionPageProps) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {regionServices.map((rs) => (
-                <Link
-                  key={rs.serviceSlug}
-                  href={`/bolgeler/${rs.regionSlug}/${rs.serviceSlug}`}
-                  className="p-6 rounded-3xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 transition-all duration-200 flex flex-col justify-between group shadow-xl"
-                >
-                  <div className="space-y-3">
-                    <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
-                      <Zap className="w-5 h-5" />
-                    </div>
-                    <h3 className="text-base font-bold text-white group-hover:text-amber-400 transition-colors">
-                      {rs.h1}
-                    </h3>
-                    <p className="text-xs text-slate-400 line-clamp-3 leading-relaxed">
-                      {rs.introduction}
-                    </p>
-                  </div>
+              {dbRegionServices.length > 0
+                ? dbRegionServices.map((rs) => (
+                    <Link
+                      key={rs.id}
+                      href={`/bolgeler/${slug}/${rs.service.slug}`}
+                      className="p-6 rounded-3xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 transition-all duration-200 flex flex-col justify-between group shadow-xl"
+                    >
+                      <div className="space-y-3">
+                        <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
+                          <Zap className="w-5 h-5" />
+                        </div>
+                        <h3 className="text-base font-bold text-white group-hover:text-amber-400 transition-colors">
+                          {rs.customTitle || `${regionName} ${rs.service.title}`}
+                        </h3>
+                        <p className="text-xs text-slate-400 line-clamp-3 leading-relaxed">
+                          {rs.customDescription || rs.service.shortDesc}
+                        </p>
+                      </div>
 
-                  <div className="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-amber-400">
-                    <span>Teknik Detayları İncele</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </Link>
-              ))}
+                      <div className="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-amber-400">
+                        <span>Teknik Detayları İncele</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </Link>
+                  ))
+                : fallbackRegionServices.map((rs) => (
+                    <Link
+                      key={rs.serviceSlug}
+                      href={`/bolgeler/${rs.regionSlug}/${rs.serviceSlug}`}
+                      className="p-6 rounded-3xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 transition-all duration-200 flex flex-col justify-between group shadow-xl"
+                    >
+                      <div className="space-y-3">
+                        <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
+                          <Zap className="w-5 h-5" />
+                        </div>
+                        <h3 className="text-base font-bold text-white group-hover:text-amber-400 transition-colors">
+                          {rs.h1}
+                        </h3>
+                        <p className="text-xs text-slate-400 line-clamp-3 leading-relaxed">
+                          {rs.introduction}
+                        </p>
+                      </div>
+
+                      <div className="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-amber-400">
+                        <span>Teknik Detayları İncele</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </Link>
+                  ))}
             </div>
           </div>
         )}
 
-        {/* Section 3: Engineering Process in this Region */}
+        {/* Section 3: Engineering Process */}
         <div className="p-8 sm:p-12 rounded-3xl bg-slate-900 border border-slate-800 space-y-8 shadow-2xl">
           <div className="text-center max-w-2xl mx-auto space-y-2">
             <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
               Süreç Standartlarımız
             </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-              {region.name} Projelerinde Mühendislik Sürecimiz
+              {regionName} Projelerinde Mühendislik Sürecimiz
             </h2>
             <p className="text-xs sm:text-sm text-slate-400">
               İlk saha keşfinden resmi EDAŞ kabulüne kadar 4 aşamalı titiz yönetim.
@@ -285,7 +394,12 @@ export default async function RegionDetailPage({ params }: RegionPageProps) {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {region.engineeringProcess.map((proc) => (
+            {(staticRegion?.engineeringProcess || [
+              { step: "01", title: "Saha Keşfi ve Yük Analizi", description: "Tesis yerinde incelenir, elektriksel güç ve kısa devre gereksinimleri hesaplanır." },
+              { step: "02", title: "Elektriksel Projelendirme", description: "BEDAŞ/EDAŞ/TEİAŞ şartnamelerine uygun uygulama projeleri hazırlanır." },
+              { step: "03", title: "Tip Testli Montaj ve İmalat", description: "Panolar, kablolama ve trafo köşkleri uzman ekiplerce kurulur." },
+              { step: "04", title: "Resmi Kabul ve Devreye Alma", description: "Tüm testler tamamlanarak dağıtım kurumu resmi kabulüyle sistem enerjilendirilir." },
+            ]).map((proc) => (
               <div
                 key={proc.step}
                 className="p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-3 relative group hover:border-amber-500/40 transition-colors"
@@ -302,13 +416,13 @@ export default async function RegionDetailPage({ params }: RegionPageProps) {
           </div>
         </div>
 
-        {/* Section 4: Regional Projects from Database if any */}
+        {/* Section 4: Regional Projects */}
         {regionalProjects.length > 0 && (
           <div className="space-y-6">
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
               <h2 className="text-2xl font-extrabold text-white flex items-center">
                 <FolderGit2 className="w-6 h-6 text-amber-400 mr-2.5" />
-                <span>{region.name} Bölgesindeki Projelerimiz</span>
+                <span>{regionName} Bölgesindeki Projelerimiz</span>
               </h2>
               <Link
                 href="/projeler"
@@ -344,7 +458,7 @@ export default async function RegionDetailPage({ params }: RegionPageProps) {
                     </h3>
                   </div>
                   <div className="pt-3 border-t border-slate-800 mt-3 text-xs text-slate-400 flex items-center justify-between">
-                    <span>{p.location || region.name}</span>
+                    <span>{p.location || regionName}</span>
                     <span className="text-amber-400 font-semibold font-mono">{p.year}</span>
                   </div>
                 </Link>
@@ -353,48 +467,50 @@ export default async function RegionDetailPage({ params }: RegionPageProps) {
           </div>
         )}
 
-        {/* Section 5: Region Specific FAQs */}
-        <div className="space-y-6">
-          <div className="border-b border-slate-800 pb-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
-              Merak Edilenler
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1 flex items-center">
-              <HelpCircle className="w-6 h-6 text-amber-400 mr-2.5" />
-              <span>{region.name} İçin Sıkça Sorulan Sorular</span>
-            </h2>
-          </div>
+        {/* Section 5: Region FAQs */}
+        {faqs.length > 0 && (
+          <div className="space-y-6">
+            <div className="border-b border-slate-800 pb-3">
+              <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
+                Merak Edilenler
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1 flex items-center">
+                <HelpCircle className="w-6 h-6 text-amber-400 mr-2.5" />
+                <span>{regionName} İçin Sıkça Sorulan Sorular</span>
+              </h2>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {region.faqs.map((faq, idx) => (
-              <div
-                key={idx}
-                className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-2.5"
-              >
-                <h3 className="text-sm font-bold text-white flex items-start">
-                  <span className="text-amber-400 font-mono font-bold mr-2">Q.</span>
-                  <span>{faq.question}</span>
-                </h3>
-                <p className="text-xs text-slate-300 leading-relaxed pl-5 border-l border-slate-800">
-                  {faq.answer}
-                </p>
-              </div>
-            ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {faqs.map((faq, idx) => (
+                <div
+                  key={idx}
+                  className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-2.5"
+                >
+                  <h3 className="text-sm font-bold text-white flex items-start">
+                    <span className="text-amber-400 font-mono font-bold mr-2">Q.</span>
+                    <span>{faq.question}</span>
+                  </h3>
+                  <p className="text-xs text-slate-300 leading-relaxed pl-5 border-l border-slate-800">
+                    {faq.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* CTA Banner */}
         <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-slate-900 via-slate-900 to-amber-950/30 border border-amber-500/30 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="space-y-2">
             <h3 className="text-2xl font-extrabold text-white">
-              {region.name} Bölgesindeki Projenizi Birlikte Planlayalım
+              {regionName} Bölgesindeki Projenizi Birlikte Planlayalım
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
               Teknik şartnamenizi iletin veya yerinde keşif talep edin; mühendislik departmanımız en kısa sürede teknik ve ticari teklifinizi hazırlasın.
             </p>
           </div>
 
-          <Link href={`/teklif-al?city=${encodeURIComponent(region.name)}`}>
+          <Link href={`/teklif-al?city=${encodeURIComponent(regionName)}&sourcePage=/bolgeler/${slug}`}>
             <Button variant="primary" size="lg" className="whitespace-nowrap">
               <span>Hemen Teklif Alın</span>
               <ArrowRight className="w-4 h-4 ml-2" />

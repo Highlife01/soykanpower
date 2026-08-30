@@ -6,7 +6,8 @@ import { prisma } from "@/lib/db";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { generateArticleSchema } from "@/lib/seo";
 import { formatDate } from "@/lib/utils";
-import { Calendar, ArrowLeft, Share2, Tag } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
+import { NewsLanguageView } from "@/components/news/NewsLanguageView";
 
 interface NewsDetailPageProps {
   params: Promise<{ slug: string }>;
@@ -25,6 +26,15 @@ export async function generateMetadata({
   return {
     title: item.metaTitle || `${item.title} | Soykan Power`,
     description: item.metaDesc || item.summary,
+    alternates: {
+      canonical: `/haberler/${item.slug}`,
+    },
+    openGraph: {
+      title: item.title,
+      description: item.summary,
+      images: item.coverImage ? [item.coverImage] : [],
+      type: "article",
+    },
   };
 }
 
@@ -40,7 +50,7 @@ export default async function NewsDetailPage({
     prisma.news.findMany({
       where: { published: true, NOT: { slug } },
       orderBy: { publishedAt: "desc" },
-      take: 4,
+      take: 5,
     }),
   ]);
 
@@ -63,61 +73,33 @@ export default async function NewsDetailPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
       <div className="bg-slate-950 text-white min-h-screen pt-24 pb-20">
-        <div className="border-b border-slate-800 bg-slate-900/60 py-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center space-x-3 mb-3 text-xs text-slate-400">
-              <span className="px-2.5 py-1 rounded bg-amber-500/10 text-amber-400 font-bold uppercase tracking-wider border border-amber-500/20">
-                {item.category}
-              </span>
-              <span className="flex items-center">
-                <Calendar className="w-3.5 h-3.5 mr-1 text-slate-400" />
-                {formatDate(item.publishedAt)}
-              </span>
-            </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
-              {item.title}
-            </h1>
-          </div>
-        </div>
-
         <Breadcrumb
           items={[
-            { label: "Haberler", href: "/haberler" },
+            { label: "Haberler & Blog", href: "/haberler" },
             { label: item.title },
           ]}
         />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="flex flex-col lg:flex-row gap-12">
-            {/* Article Content */}
-            <article className="flex-1 space-y-8">
-              {item.coverImage && (
-                <div className="rounded-3xl overflow-hidden border border-slate-800 aspect-video bg-slate-900">
-                  <img
-                    src={item.coverImage}
-                    alt={item.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              )}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div className="flex flex-col lg:flex-row gap-10">
+            {/* Main Interactive Article View with TR/EN/AR/RU Support */}
+            <article className="flex-1 min-w-0">
+              <NewsLanguageView item={item} />
 
-              {/* Summary Lead */}
-              <div className="p-6 rounded-2xl bg-slate-900/80 border-l-4 border-amber-500 text-slate-200 text-base sm:text-lg font-medium leading-relaxed">
-                {item.summary}
-              </div>
-
-              {/* Body Content */}
-              <div className="p-8 rounded-3xl bg-slate-900 border border-slate-800 text-slate-300 text-sm sm:text-base leading-relaxed whitespace-pre-line space-y-4">
-                {item.content}
-              </div>
-
-              <div className="pt-6 border-t border-slate-800 flex items-center justify-between">
+              <div className="pt-8 mt-10 border-t border-slate-800 flex items-center justify-between">
                 <Link
                   href="/haberler"
-                  className="inline-flex items-center text-xs font-bold text-slate-400 hover:text-white transition-colors"
+                  className="inline-flex items-center text-xs font-bold text-slate-400 hover:text-amber-400 transition-colors"
                 >
                   <ArrowLeft className="w-4 h-4 mr-1.5" />
-                  <span>Tüm Haberlere Dön</span>
+                  <span>Tüm Haberlere & Makalelere Dön</span>
+                </Link>
+
+                <Link
+                  href="/teklif-al"
+                  className="inline-flex items-center text-xs font-bold px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 transition-all font-semibold"
+                >
+                  Projeniz İçin Teklif Alın
                 </Link>
               </div>
             </article>
@@ -125,21 +107,24 @@ export default async function NewsDetailPage({
             {/* Sidebar */}
             <aside className="w-full lg:w-80 shrink-0 space-y-6">
               {recentNews.length > 0 && (
-                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-amber-400 border-b border-slate-800 pb-3">
-                    Son Eklenen Haberler
+                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4 sticky top-28">
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-amber-400 border-b border-slate-800 pb-3 flex items-center justify-between">
+                    <span>Diğer Makaleler</span>
+                    <span className="text-[10px] text-slate-500 font-normal">Teknik Bülten</span>
                   </h3>
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     {recentNews.map((rn) => (
                       <Link
                         key={rn.id}
                         href={`/haberler/${rn.slug}`}
-                        className="block group"
+                        className="block group space-y-1"
                       >
-                        <div className="text-xs text-slate-500">
-                          {formatDate(rn.publishedAt)}
+                        <div className="flex items-center space-x-2 text-[11px] text-slate-500">
+                          <span className="text-amber-500/80 font-semibold">{rn.category}</span>
+                          <span>•</span>
+                          <span>{formatDate(rn.publishedAt)}</span>
                         </div>
-                        <div className="text-sm font-semibold text-slate-300 group-hover:text-amber-400 transition-colors line-clamp-2 mt-0.5">
+                        <div className="text-sm font-medium text-slate-300 group-hover:text-amber-400 transition-colors line-clamp-2 leading-snug">
                           {rn.title}
                         </div>
                       </Link>
