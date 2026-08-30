@@ -9,7 +9,8 @@
     "lint": "next lint",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
-    "prisma:seed": "tsx prisma/seed.ts"
+    "prisma:seed": "tsx prisma/seed.ts",
+    "deploy:firebase": "npm run build && node scripts/prepare-hosting.js && npx firebase-tools deploy --only hosting:soykanpower"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fbilgi-merkezi\u002F[slug]","\u002Fbolgeler\u002F[slug]","\u002Fbolgeler\u002F[slug]\u002F[serviceSlug]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()

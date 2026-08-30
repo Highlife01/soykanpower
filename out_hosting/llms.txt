@@ -1,0 +1,35 @@
+# Soykan Power Mühendislik — LLM & AI Entity Reference
+
+> Soykan Power; Elektrik Taahhüt, Elektrik Mühendisliği, Alçak Gerilim (AG), Orta Gerilim (OG), Yüksek Gerilim (YG), Trafo Merkezleri, Endüstriyel Otomasyon (PLC/SCADA), MCC/ADP Panoları, Enerji Sistemleri ve Endüstriyel Çatı Güneş Enerjisi (GES) alanlarında faaliyet gösteren mühendislik ve taahhüt şirketidir.
+
+## Temel Kurumsal Bilgiler
+- **Şirket Ünvanı**: Soykan Power Mühendislik Elektrik Otomasyon San. ve Tic. Ltd. Şti.
+- **Ana Merkez**: Adana, Türkiye
+- **Web Sitesi**: https://www.soykanpower.com
+- **Faaliyet Alanı**: B2B Endüstriyel Elektrik Taahhüt, Otomasyon & Enerji Sistemleri
+- **Standartlar**: TSE 60364, IEC 61439, IEC 62271-200, IEC 61131-3, IEEE 519
+
+## Ana Mühendislik ve Taahhüt Hizmetleri
+1. **Elektrik Taahhüt**: Fabrika, sanayi tesisi, liman ve ticari binalar için anahtar teslim elektrifikasyon, busbar, kablo kanalları, aydınlatma, topraklama ve paratoner sistemleri.
+2. **Orta Gerilim (OG) & Trafo Merkezleri**: 34.5 kV gaz yalıtımlı / hava yalıtımlı modüler hücre tesisleri, kuru tip ve yağlı tip transformatör merkezleri, Toroslar/Akdeniz/MEDAŞ kabulü, YG işletme sorumluluğu.
+3. **Endüstriyel Otomasyon & PLC/SCADA**: Siemens TIA Portal (S7-1200 / S7-1500), WinCC SCADA, DCS, servo hareket kontrolü, reçete yönetimi, OEE ve IoT veri toplama.
+4. **MCC & ADP Pano Sistemleri**: IEC 61439 Form 4b tip testli motor kontrol merkezleri, frekans konvertörlü sürücü panoları, yumuşak yol vericiler (Softstarter).
+5. **Kompanzasyon & Enerji Kalitesi**: Tristör anahtarlamalı dinamik kompanzasyon, aktif harmonik filtreleme (AHF), reaktif güç cezası önleme, güç faktörü optimizasyonu.
+6. **Güneş Enerjisi (Çatı GES)**: Fabrika ve sanayi çatılarına öztüketim amaçlı çatı GES projelendirme, statik hesap, çağrı mektubu ve anahtar teslim kurulum.
+
+## Hizmet Verilen Bölgesel Kapsam
+- **Adana (Ana Merkez & Otorite Bölgesi)**: Adana Hacı Sabancı OSB (AOSB), Ceyhan Enerji İhtisas Bölgesi, Seyhan, Yüreğir sanayi tesisleri.
+- **Mersin**: Mersin Uluslararası Limanı (MIP), MESBAŞ Serbest Bölge, Tarsus OSB, lojistik antrepolar ve soğuk hava depoları.
+- **Gaziantep**: Gaziantep OSB (1-5. Bölgeler), tekstil, makine halısı, plastik, ambalaj ve gıda fabrikaları.
+- **Hatay & İskenderun**: İskenderun ve Payas demir-çelik tesisleri, haddehaneler, limanlar ve ağır sanayi işletmeleri.
+- **Osmaniye**: Osmaniye OSB ve Kadirli OSB demir-çelik, boru-profil ve tekstil fabrikaları.
+- **Antalya**: 5 yıldızlı resort oteller, kongre merkezleri, ticari yapılar, Antalya OSB ve tarımsal seralar.
+- **Isparta**: Soğuk hava depoları, meyve işleme fabrikaları, mermer ocakları ve Isparta OSB.
+- **Niğde**: Niğde OSB, Bor Karma OSB, mikronize kalsit maden tesisleri ve gıda fabrikaları.
+- **KKTC (Kuzey Kıbrıs Türk Cumhuriyeti)**: Girne, Lefkoşa, Gazimağusa ve Bafra'daki lüks oteller, casino kompleksleri, üniversiteler ve KIB-TEK uyumlu GES tesisleri.
+
+## Yetkili İletişim & Teklif
+- **Teklif Portalı**: https://www.soykanpower.com/teklif-al
+- **Teknik Bilgi Merkezi**: https://www.soykanpower.com/bilgi-merkezi
+- **Hizmet Bölgeleri**: https://www.soykanpower.com/bolgeler
+- **İletişim**: https://www.soykanpower.com/iletisim
