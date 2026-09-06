@@ -8,7 +8,7 @@ import { Award, FileCheck } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Belgeler & Sertifikalar",
-  description: "Soykan Power kurumsal kalite belgeleri, mesleki yetki sertifikaları ve standart uygunlukları.",
+  description: "Novatek Enerji kurumsal kalite belgeleri, mesleki yetki sertifikaları ve standart uygunlukları.",
 };
 
 export default async function CertificatesPage() {
@@ -48,7 +48,7 @@ export default async function CertificatesPage() {
                 Kalite ve Uygunluk Standartlarımız
               </h2>
               <p>
-                Soykan Power olarak; tüm mühendislik, pano montaj ve saha taahhüt
+                Novatek Enerji olarak; tüm mühendislik, pano montaj ve saha taahhüt
                 süreçlerimizi uluslararası akreditasyona sahip kalite yönetim
                 standartları ve sektörel yetki belgeleri çerçevesinde yürütüyoruz.
               </p>

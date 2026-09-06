@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
       },
       create: {
         id: "default",
-        companyName: body.companyName || "Soykan Power",
+        companyName: body.companyName || "Novatek Enerji",
         phone: body.phone,
         email: body.email,
         address: body.address,

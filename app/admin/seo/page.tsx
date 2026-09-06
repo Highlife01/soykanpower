@@ -646,7 +646,7 @@ export default function AdminSeoPage() {
                 </label>
                 <input
                   type="text"
-                  placeholder="{city} Elektrik Taahhüt | Soykan Power"
+                  placeholder="{city} Elektrik Taahhüt | Novatek Enerji"
                   value={regionForm.metaTitle}
                   onChange={(e) => setRegionForm({ ...regionForm, metaTitle: e.target.value })}
                   className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-amber-500"

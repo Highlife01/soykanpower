@@ -49,7 +49,7 @@ export function Footer({ siteSetting }: FooterProps) {
               </div>
               <div className="flex flex-col">
                 <span className="text-2xl font-black tracking-wider text-white flex items-center">
-                  SOYKAN<span className="bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-transparent ml-1">POWER</span>
+                  NOVATEK<span className="bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-transparent ml-1">ENERJİ</span>
                 </span>
                 <span className="text-[10px] tracking-widest uppercase font-bold text-slate-400 -mt-1">
                   Mühendislik & Otomasyon
@@ -281,7 +281,7 @@ export function Footer({ siteSetting }: FooterProps) {
         {/* Bottom Bar: Legal Links & Copyright */}
         <div className="mt-14 pt-8 border-t border-slate-800/80 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-4">
           <div>
-            © {currentYear} Soykan Power Mühendislik & Otomasyon. Tüm hakları saklıdır.
+            © {currentYear} Novatek Enerji Mühendislik & Otomasyon. Tüm hakları saklıdır.
           </div>
           <div className="flex flex-wrap items-center space-x-6">
             <Link href="/yasal/kvkk" className="hover:text-slate-300 transition-colors">

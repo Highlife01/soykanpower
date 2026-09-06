@@ -24,7 +24,7 @@ export async function generateMetadata({
   if (!item) return { title: "Haber Bulunamadı" };
 
   return {
-    title: item.metaTitle || `${item.title} | Soykan Power`,
+    title: item.metaTitle || `${item.title} | Novatek Enerji`,
     description: item.metaDesc || item.summary,
     alternates: {
       canonical: `/haberler/${item.slug}`,

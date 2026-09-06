@@ -6,7 +6,7 @@ import { Award, CheckCircle2, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Kalite Politikamız",
-  description: "Soykan Power kalite yönetim standartları ve mükemmeliyet politikası.",
+  description: "Novatek Enerji kalite yönetim standartları ve mükemmeliyet politikası.",
 };
 
 export default function QualityPolicyPage() {
@@ -53,7 +53,7 @@ export default function QualityPolicyPage() {
                 Mühendislikte Koşulsuz Kalite Güvencesi
               </h2>
               <p>
-                Soykan Power olarak kaliteyi; projelerin yalnızca teslim edilmesi değil,
+                Novatek Enerji olarak kaliteyi; projelerin yalnızca teslim edilmesi değil,
                 yıllar boyunca güvenle ve kesintisiz çalışması olarak tanımlıyoruz.
                 Tasarım aşamasından başlayarak pano imalatı, kablolama, montaj ve
                 devreye alma safhalarının her birinde kalite kontrol (QC) süreçlerini

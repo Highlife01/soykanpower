@@ -26,8 +26,8 @@ export const TECHNICAL_GUIDES: TechnicalGuideData[] = [
     category: "OG & Trafo",
     readTime: "7 dk okuma",
     publishedAt: "2026-02-15",
-    author: "Soykan Power Mühendislik Departmanı",
-    metaTitle: "Orta Gerilim (OG) Sistemi Nedir? Şebeke & Hücre Rehberi | Soykan Power",
+    author: "Novatek Enerji Mühendislik Departmanı",
+    metaTitle: "Orta Gerilim (OG) Sistemi Nedir? Şebeke & Hücre Rehberi | Novatek Enerji",
     metaDesc: "Orta gerilim (OG) nedir? 34.5 kV şebeke bağlantısı, gaz yalıtımlı ve modüler hücre türleri, trafo seçimi ve TEİAŞ/EDAŞ kabul standartları teknik rehberi.",
     quickAnswer: "Orta Gerilim (OG) sistemleri, anma gerilimi 1 kV (1000 Volt) ile 36 kV (36000 Volt) arasında olan elektrik iletim ve dağıtım sistemleridir. Sanayi tesisleri ve fabrikalar, yüksek güç taleplerini düşük akımla ve minimum enerji kaybıyla karşılamak için elektrik dağıtım şirketlerine (Toroslar EDAŞ, Akdeniz EDAŞ vb.) doğrudan 34.5 kV orta gerilim seviyesinden bağlanır.",
     keyTakeaways: [
@@ -93,8 +93,8 @@ export const TECHNICAL_GUIDES: TechnicalGuideData[] = [
     category: "OG & Trafo",
     readTime: "6 dk okuma",
     publishedAt: "2026-02-18",
-    author: "Soykan Power Mühendislik Departmanı",
-    metaTitle: "Trafo Merkezi Nasıl Kurulur? Kurulum Standartları | Soykan Power",
+    author: "Novatek Enerji Mühendislik Departmanı",
+    metaTitle: "Trafo Merkezi Nasıl Kurulur? Kurulum Standartları | Novatek Enerji",
     metaDesc: "Endüstriyel trafo merkezi kurulum aşamaları, kuru ve yağlı tip trafo karşılaştırması, beton köşk havalandırması ve topraklama mühendisliği rehberi.",
     quickAnswer: "Endüstriyel trafo merkezi kurulumu; dağıtım şebekesinden gelen 34.5 kV yüksek enerjiyi tesisin kullanabileceği 400V alçak gerilime dönüştüren şalt binası veya monoblok beton köşk tesisidir. Kurulum; zemin etüdü, trafo seçimi, hücre montajı, topraklama ağı ve EDAŞ kabul süreçlerini kapsar.",
     keyTakeaways: [
@@ -146,8 +146,8 @@ export const TECHNICAL_GUIDES: TechnicalGuideData[] = [
     category: "Otomasyon & SCADA",
     readTime: "8 dk okuma",
     publishedAt: "2026-02-20",
-    author: "Soykan Power Otomasyon Mühendisliği",
-    metaTitle: "Fabrika Otomasyonu Nasıl Planlanır? PLC & SCADA Rehberi | Soykan Power",
+    author: "Novatek Enerji Otomasyon Mühendisliği",
+    metaTitle: "Fabrika Otomasyonu Nasıl Planlanır? PLC & SCADA Rehberi | Novatek Enerji",
     metaDesc: "Fabrikalarda PLC ve SCADA otomasyonu planlama aşamaları, I/O listesi, endüstriyel haberleşme (Profinet/Modbus) ve SCADA ekran tasarımı rehberi.",
     quickAnswer: "Fabrika otomasyonu planlaması; sahadaki sensör ve aktüatörlerin I/O listesinin çıkarılması, uygun PLC donanımının belirlenmesi, kontrol algoritmalarının kodlanması ve operatörlerin hattı yönetebileceği merkezi SCADA arayüzünün tasarlanması sürecidir.",
     keyTakeaways: [
@@ -197,8 +197,8 @@ export const TECHNICAL_GUIDES: TechnicalGuideData[] = [
     category: "Pano & Enerji",
     readTime: "6 dk okuma",
     publishedAt: "2026-02-22",
-    author: "Soykan Power Pano Mühendisliği Departmanı",
-    metaTitle: "MCC ve ADP Pano Standartları (IEC 61439) | Soykan Power",
+    author: "Novatek Enerji Pano Mühendisliği Departmanı",
+    metaTitle: "MCC ve ADP Pano Standartları (IEC 61439) | Novatek Enerji",
     metaDesc: "Tip testli MCC ve ADP pano sistemleri, IEC 61439 standartları, Form 4b ayrımı, bara sıcaklık artış limitleri ve kompanzasyon pano mühendisliği.",
     quickAnswer: "MCC (Motor Control Center) ve ADP (Ana Dağıtım Panosu) sistemleri, fabrikaların tüm elektrik gücünü ve yüzlerce motorunu güvenle yöneten merkezi panolardır. IEC 61439-1/2 standardına göre tip testli olarak üretilen panolar, kısa devreye, sıcaklık artışına ve yangına karşı maksimum işletme güvenliği sağlar.",
     keyTakeaways: [
@@ -243,8 +243,8 @@ export const TECHNICAL_GUIDES: TechnicalGuideData[] = [
     category: "Güneş Enerjisi (GES)",
     readTime: "7 dk okuma",
     publishedAt: "2026-02-24",
-    author: "Soykan Power GES Mühendislik Departmanı",
-    metaTitle: "Fabrika Çatı GES Kurulumu & Fizibilite Rehberi | Soykan Power",
+    author: "Novatek Enerji GES Mühendislik Departmanı",
+    metaTitle: "Fabrika Çatı GES Kurulumu & Fizibilite Rehberi | Novatek Enerji",
     metaDesc: "Sanayi tesislerinde çatı GES fizibilitesi nasıl yapılır? Statik hesap, 5.1.h çağrı mektubu, TEDAŞ proje onayı, aylık mahsuplaşma ve amortisman süresi.",
     quickAnswer: "Sanayi tesislerinde çatı GES kurulumu; fabrikanın çatı alanına fotovoltaik (PV) güneş panelleri kurularak tüketilen elektrik enerjisinin güneşten karşılanması ve ihtiyaç fazlası elektriğin aylık mahsuplaşma ile şebekeye satılması sistemidir. Yatırım amortisman süresi Akdeniz ve Güney bölgelerinde ortalama 3.2 - 4.2 yıldır.",
     keyTakeaways: [
@@ -288,8 +288,8 @@ export const TECHNICAL_GUIDES: TechnicalGuideData[] = [
     category: "Pano & Enerji",
     readTime: "5 dk okuma",
     publishedAt: "2026-02-26",
-    author: "Soykan Power Enerji Kalitesi Mühendisliği",
-    metaTitle: "Kompanzasyon Nedir? Reaktif Ceza Nasıl Önlenir? | Soykan Power",
+    author: "Novatek Enerji Enerji Kalitesi Mühendisliği",
+    metaTitle: "Kompanzasyon Nedir? Reaktif Ceza Nasıl Önlenir? | Novatek Enerji",
     metaDesc: "Reaktif güç kompanzasyonu nedir? Endüktif ve kapasitif ceza sınırları, tristörlü dinamik kompanzasyon, harmonik filtreli kondansatör seçimi rehberi.",
     quickAnswer: "Kompanzasyon, fabrikalardaki motor, trafo ve endüktif yüklerin şebekeden çektiği reaktif gücü kondansatör veya sürücülerle yerinde üreterek şebekeyi rahatlatma işlemidir. EPDK mevzuatına göre endüktif tüketimin %20'yi, kapasitif tüketimin %15'i aşması durumunda faturaya yüksek reaktif ceza yansır.",
     keyTakeaways: [
@@ -334,8 +334,8 @@ export const TECHNICAL_GUIDES: TechnicalGuideData[] = [
     category: "Pano & Enerji",
     readTime: "6 dk okuma",
     publishedAt: "2026-02-27",
-    author: "Soykan Power Enerji Kalitesi Departmanı",
-    metaTitle: "Harmonik Filtreleme & Güç Kalitesi Rehberi | Soykan Power",
+    author: "Novatek Enerji Enerji Kalitesi Departmanı",
+    metaTitle: "Harmonik Filtreleme & Güç Kalitesi Rehberi | Novatek Enerji",
     metaDesc: "Endüstriyel tesislerde harmonik nedir? THD sınırları, aktif harmonik filtre (AHF) çalışma prensibi, trafo ve motor ısınmalarını önleme rehberi.",
     quickAnswer: "Harmonikler, endüstriyel tesislerdeki inverterler, sürücüler ve doğrultucular gibi doğrusal olmayan (non-linear) yüklerin 50 Hz sinüs dalga şeklini bozarak 150 Hz, 250 Hz, 350 Hz gibi katlarda oluşturduğu parazit akımlardır. Aktif harmonik filtreler (AHF), bu parazit akımları anında sönümleyerek temiz sinüs dalgası sağlar.",
     keyTakeaways: [
@@ -380,8 +380,8 @@ export const TECHNICAL_GUIDES: TechnicalGuideData[] = [
     category: "Standartlar & Mevzuat",
     readTime: "5 dk okuma",
     publishedAt: "2026-03-01",
-    author: "Soykan Power Yönetim & Mühendislik Kurulu",
-    metaTitle: "Elektrik Taahhüt Firması Seçim Rehberi (10 Kriter) | Soykan Power",
+    author: "Novatek Enerji Yönetim & Mühendislik Kurulu",
+    metaTitle: "Elektrik Taahhüt Firması Seçim Rehberi (10 Kriter) | Novatek Enerji",
     metaDesc: "Elektrik taahhüt firması seçerken nelere dikkat edilmeli? Mühendislik kadrosu, referans projeler, tip testli malzeme kullanımı ve İSG standartları rehberi.",
     quickAnswer: "Doğru elektrik taahhüt firması seçimi; endüstriyel tesislerin yangın güvenliğini, kesintisiz üretimini ve enerji verimliliğini doğrudan belirler. Karar verirken yalnızca birim fiyat teklifine değil, firmanın mühendislik kadrosuna, tip testli malzeme kullanımına, EDAŞ kabul tecrübesine ve İSG sertifikasyonlarına bakılmalıdır.",
     keyTakeaways: [
@@ -409,8 +409,8 @@ export const TECHNICAL_GUIDES: TechnicalGuideData[] = [
     `,
     faqs: [
       {
-        question: "Soykan Power hangi garantileri sunmaktadır?",
-        answer: "Soykan Power, tüm anahtar teslim taahhüt projelerinde 2 yıl malzeme ve işçilik garantisi ile 7/24 teknik servis ve bakım desteği taahhüt eder.",
+        question: "Novatek Enerji hangi garantileri sunmaktadır?",
+        answer: "Novatek Enerji, tüm anahtar teslim taahhüt projelerinde 2 yıl malzeme ve işçilik garantisi ile 7/24 teknik servis ve bakım desteği taahhüt eder.",
       },
     ],
     relatedServiceSlug: "elektrik-taahhut-hizmetleri",

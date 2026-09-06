@@ -15,15 +15,16 @@ const headingFont = Outfit({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.soykanpower.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.novatekenerji.com.tr"),
   title: {
-    default: "Soykan Power | Elektrik Taahhüt, Endüstriyel Otomasyon & Enerji Sistemleri",
-    template: "%s | Soykan Power Mühendislik",
+    default: "Novatek Enerji | Elektrik Taahhüt, Endüstriyel Otomasyon & Enerji Sistemleri",
+    template: "%s | Novatek Enerji Mühendislik",
   },
   description:
     "Elektrik taahhüt, AG/OG/YG şalt sistemleri, trafo merkezleri, PLC/SCADA endüstriyel otomasyon, tip testli pano imalatı ve çatı/arazi güneş enerjisi (GES) anahtar teslim mühendislik çözümleri.",
   keywords: [
-    "Soykan Power",
+    "Novatek Enerji",
+    "Novatek Enerji Mühendislik",
     "Elektrik Taahhüt",
     "Endüstriyel Otomasyon",
     "PLC Programlama",
@@ -37,20 +38,20 @@ export const metadata: Metadata = {
     "Enerji Verimliliği",
     "Mühendislik",
   ],
-  authors: [{ name: "Soykan Power Mühendislik" }],
-  creator: "Soykan Power",
+  authors: [{ name: "Novatek Enerji Mühendislik" }],
+  creator: "Novatek Enerji",
   openGraph: {
     type: "website",
     locale: "tr_TR",
-    url: "https://www.soykanpower.com",
-    title: "Soykan Power | Endüstriyel Mühendislik & Otomasyon",
+    url: "https://www.novatekenerji.com.tr",
+    title: "Novatek Enerji | Endüstriyel Mühendislik & Otomasyon",
     description:
       "Elektrik taahhüt, endüstriyel otomasyon, trafo merkezleri ve güneş enerjisi santrallerinde uçtan uca anahtar teslim mühendislik çözümleri.",
-    siteName: "Soykan Power",
+    siteName: "Novatek Enerji",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Soykan Power | Endüstriyel Mühendislik & Otomasyon",
+    title: "Novatek Enerji | Endüstriyel Mühendislik & Otomasyon",
     description:
       "Elektrik taahhüt, endüstriyel otomasyon, trafo merkezleri ve güneş enerjisi santrallerinde uçtan uca anahtar teslim mühendislik çözümleri.",
   },

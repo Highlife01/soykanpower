@@ -20,18 +20,18 @@ export function EmptyState({
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center py-16 px-6 text-center border-2 border-dashed border-slate-200 rounded-2xl bg-slate-50/50 my-6",
+        "flex flex-col items-center justify-center py-16 px-6 text-center border-2 border-dashed border-slate-700/80 rounded-2xl bg-slate-900/60 my-6",
         className
       )}
     >
-      <div className="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-600 flex items-center justify-center mb-4 shadow-inner">
+      <div className="w-14 h-14 rounded-2xl bg-amber-500/15 border border-amber-500/30 text-amber-400 flex items-center justify-center mb-4 shadow-inner">
         {icon || <FolderGit2 className="w-7 h-7" />}
       </div>
-      <h3 className="text-lg font-semibold text-slate-800 tracking-tight">
+      <h3 className="text-lg font-bold text-white tracking-tight">
         {title}
       </h3>
       {description && (
-        <p className="text-sm text-slate-500 max-w-md mt-1.5 leading-relaxed">
+        <p className="text-sm text-slate-300 max-w-md mt-1.5 leading-relaxed">
           {description}
         </p>
       )}

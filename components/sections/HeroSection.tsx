@@ -39,7 +39,7 @@ export function HeroSection() {
           {/* Top Badge */}
           <div className="inline-flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-slate-900/90 border border-amber-500/30 text-slate-200 text-xs font-semibold shadow-2xl backdrop-blur-xl animate-shimmer">
             <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse shadow-sm shadow-amber-400" />
-            <span className="text-amber-400 font-extrabold tracking-wider">SOYKAN POWER</span>
+            <span className="text-amber-400 font-extrabold tracking-wider">NOVATEK ENERJİ</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-300">Uçtan Uca Endüstriyel Mühendislik, Otomasyon & Enerji</span>
           </div>

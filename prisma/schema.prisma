@@ -257,7 +257,7 @@ model ContactMessage {
 
 model SiteSetting {
   id             String   @id @default("default")
-  companyName    String   @default("Soykan Power Mühendislik")
+  companyName    String   @default("Novatek Enerji Mühendislik")
   phone          String?
   email          String?
   address        String?

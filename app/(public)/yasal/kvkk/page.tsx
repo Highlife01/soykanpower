@@ -4,7 +4,7 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "KVKK Aydınlatma Metni | Soykan Power Mühendislik",
+  title: "KVKK Aydınlatma Metni | Novatek Enerji Mühendislik",
   description: "6698 Sayılı Kişisel Verilerin Korunması Kanunu Kapsamında Aydınlatma Metni.",
 };
 
@@ -38,7 +38,7 @@ export default function KvkkPage() {
             1. Veri Sorumlusunun Kimliği
           </h2>
           <p>
-            Soykan Power (“Şirket”) olarak, 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) kapsamında “Veri Sorumlusu” sıfatıyla, tarafımıza ilettiğiniz kişisel verilerinizi kanuni sınırlar içerisinde özenle işlemekte ve korumaktayız.
+            Novatek Enerji (“Şirket”) olarak, 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) kapsamında “Veri Sorumlusu” sıfatıyla, tarafımıza ilettiğiniz kişisel verilerinizi kanuni sınırlar içerisinde özenle işlemekte ve korumaktayız.
           </p>
 
           <h2 className="text-xl font-bold text-white border-b border-slate-800 pb-3">
@@ -66,7 +66,7 @@ export default function KvkkPage() {
             4. İlgili Kişinin Hakları (KVKK Madde 11)
           </h2>
           <p>
-            KVKK’nın 11. maddesi uyarınca; verilerinizin işlenip işlenmediğini öğrenme, işlenmişse bilgi talep etme, düzeltilmesini veya silinmesini isteme haklarına sahipsiniz. Başvurularınızı info@soykanpower.com adresine iletebilirsiniz.
+            KVKK’nın 11. maddesi uyarınca; verilerinizin işlenip işlenmediğini öğrenme, işlenmişse bilgi talep etme, düzeltilmesini veya silinmesini isteme haklarına sahipsiniz. Başvurularınızı info@novatekenerji.com.tr adresine iletebilirsiniz.
           </p>
         </div>
       </div>

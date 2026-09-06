@@ -6,7 +6,7 @@ import { Target, Eye, Compass, CheckCircle } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Misyon & Vizyon",
-  description: "Soykan Power mühendislik vizyonu ve kurumsal misyon ilkeleri.",
+  description: "Novatek Enerji mühendislik vizyonu ve kurumsal misyon ilkeleri.",
 };
 
 export default function MissionVisionPage() {

@@ -3,8 +3,8 @@ import { Metadata } from "next";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 
 export const metadata: Metadata = {
-  title: "Çerez Politikası | Soykan Power Mühendislik",
-  description: "Soykan Power web sitesi çerez kullanım politikası ve tercihleri.",
+  title: "Çerez Politikası | Novatek Enerji Mühendislik",
+  description: "Novatek Enerji web sitesi çerez kullanım politikası ve tercihleri.",
 };
 
 export default function CookiePolicyPage() {

@@ -52,7 +52,7 @@ export default function AdminLoginPage() {
             <Zap className="w-7 h-7 text-slate-950 fill-slate-950" />
           </div>
           <h1 className="text-2xl font-extrabold tracking-wider">
-            SOYKAN<span className="text-amber-400">POWER</span>
+            NOVATEK<span className="text-amber-400">ENERJİ</span>
           </h1>
           <p className="text-xs text-slate-400 uppercase font-semibold tracking-wider">
             Yönetici Girişi (Admin Portal)
@@ -76,7 +76,7 @@ export default function AdminLoginPage() {
               <input
                 type="email"
                 required
-                placeholder="admin@soykanpower.com"
+                placeholder="admin@novatekenerji.com.tr"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-amber-500 text-sm"
@@ -114,7 +114,7 @@ export default function AdminLoginPage() {
         </form>
 
         <div className="text-center pt-2 text-[11px] text-slate-500 border-t border-slate-800">
-          Güvenli Yönetim Oturumu • Soykan Power Mühendislik
+          Güvenli Yönetim Oturumu • Novatek Enerji Mühendislik
         </div>
       </div>
     </div>

@@ -31,7 +31,7 @@ export default function AdminSettingsPage() {
         if (res.ok) {
           const data = await res.json();
           setFormData({
-            companyName: data.companyName || "Soykan Power Mühendislik",
+            companyName: data.companyName || "Novatek Enerji Mühendislik",
             phone: data.phone || "",
             email: data.email || "",
             address: data.address || "",

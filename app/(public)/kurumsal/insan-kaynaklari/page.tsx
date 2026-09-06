@@ -7,7 +7,7 @@ import { Users, CheckCircle2, ArrowRight, Briefcase } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "İnsan Kaynakları",
-  description: "Soykan Power insan kaynakları vizyonu, kariyer olanakları ve çalışma kültürü.",
+  description: "Novatek Enerji insan kaynakları vizyonu, kariyer olanakları ve çalışma kültürü.",
 };
 
 export default function HumanResourcesPage() {
@@ -53,7 +53,7 @@ export default function HumanResourcesPage() {
                 İnsan Kaynakları Vizyonumuz
               </h2>
               <p>
-                Soykan Power ailesi olarak; en değerli sermayemizin bilgi,
+                Novatek Enerji ailesi olarak; en değerli sermayemizin bilgi,
                 deneyim ve tutkuyla çalışan insan kaynağımız olduğuna inanıyoruz.
                 Elektrik, otomasyon ve enerji mühendisliği alanında sektörün en
                 nitelikli profesyonellerini bünyemize kazandırmayı ve onların

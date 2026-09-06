@@ -3,10 +3,10 @@ import { cookies } from "next/headers";
 import { prisma } from "./db";
 
 const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || "soykan_power_default_jwt_secret_change_in_production"
+  process.env.JWT_SECRET || "novatek_enerji_default_jwt_secret_change_in_production"
 );
 
-const COOKIE_NAME = "soykan_admin_session";
+const COOKIE_NAME = "novatek_admin_session";
 
 export interface SessionUser {
   id: string;

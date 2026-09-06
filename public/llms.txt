@@ -1,11 +1,11 @@
-# Soykan Power Mühendislik — LLM & AI Entity Reference
+# Novatek Enerji Mühendislik — LLM & AI Entity Reference
 
-> Soykan Power; Elektrik Taahhüt, Elektrik Mühendisliği, Alçak Gerilim (AG), Orta Gerilim (OG), Yüksek Gerilim (YG), Trafo Merkezleri, Endüstriyel Otomasyon (PLC/SCADA), MCC/ADP Panoları, Enerji Sistemleri ve Endüstriyel Çatı Güneş Enerjisi (GES) alanlarında faaliyet gösteren mühendislik ve taahhüt şirketidir.
+> Novatek Enerji; Elektrik Taahhüt, Elektrik Mühendisliği, Alçak Gerilim (AG), Orta Gerilim (OG), Yüksek Gerilim (YG), Trafo Merkezleri, Endüstriyel Otomasyon (PLC/SCADA), MCC/ADP Panoları, Enerji Sistemleri ve Endüstriyel Çatı Güneş Enerjisi (GES) alanlarında faaliyet gösteren mühendislik ve taahhüt şirketidir.
 
 ## Temel Kurumsal Bilgiler
-- **Şirket Ünvanı**: Soykan Power Mühendislik Elektrik Otomasyon San. ve Tic. Ltd. Şti.
+- **Şirket Ünvanı**: Novatek Enerji Mühendislik San. ve Tic. Ltd. Şti.
 - **Ana Merkez**: Adana, Türkiye
-- **Web Sitesi**: https://www.soykanpower.com
+- **Web Sitesi**: https://www.novatekenerji.com.tr
 - **Faaliyet Alanı**: B2B Endüstriyel Elektrik Taahhüt, Otomasyon & Enerji Sistemleri
 - **Standartlar**: TSE 60364, IEC 61439, IEC 62271-200, IEC 61131-3, IEEE 519
 
@@ -29,7 +29,7 @@
 - **KKTC (Kuzey Kıbrıs Türk Cumhuriyeti)**: Girne, Lefkoşa, Gazimağusa ve Bafra'daki lüks oteller, casino kompleksleri, üniversiteler ve KIB-TEK uyumlu GES tesisleri.
 
 ## Yetkili İletişim & Teklif
-- **Teklif Portalı**: https://www.soykanpower.com/teklif-al
-- **Teknik Bilgi Merkezi**: https://www.soykanpower.com/bilgi-merkezi
-- **Hizmet Bölgeleri**: https://www.soykanpower.com/bolgeler
-- **İletişim**: https://www.soykanpower.com/iletisim
+- **Teklif Portalı**: https://www.novatekenerji.com.tr/teklif-al
+- **Teknik Bilgi Merkezi**: https://www.novatekenerji.com.tr/bilgi-merkezi
+- **Hizmet Bölgeleri**: https://www.novatekenerji.com.tr/bolgeler
+- **İletişim**: https://www.novatekenerji.com.tr/iletisim

@@ -2,7 +2,7 @@ import { RegionData } from "@/data/regions";
 import { RegionServiceData } from "@/data/regionServices";
 import { TechnicalGuideData } from "@/data/technicalGuides";
 
-export const BASE_SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.soykanpower.com";
+export const BASE_SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.novatekenerji.com.tr";
 export const ORGANIZATION_ID = `${BASE_SITE_URL}/#organization`;
 export const WEBSITE_ID = `${BASE_SITE_URL}/#website`;
 
@@ -12,7 +12,7 @@ export function generateWebSiteSchema() {
     "@type": "WebSite",
     "@id": WEBSITE_ID,
     url: BASE_SITE_URL,
-    name: "Soykan Power",
+    name: "Novatek Enerji",
     description: "Elektrik Taahhüt, Endüstriyel Otomasyon, Enerji Sistemleri ve Güneş Enerjisi Mühendislik Çözümleri",
     publisher: {
       "@id": ORGANIZATION_ID,
@@ -31,18 +31,18 @@ export function generateOrganizationSchema(siteSetting?: {
     "@context": "https://schema.org",
     "@type": ["Organization", "ProfessionalService", "EngineeringCompany"],
     "@id": ORGANIZATION_ID,
-    name: siteSetting?.companyName || "Soykan Power Mühendislik",
-    legalName: siteSetting?.companyName || "Soykan Power Mühendislik Elektrik Otomasyon San. ve Tic. Ltd. Şti.",
+    name: siteSetting?.companyName || "Novatek Enerji",
+    legalName: siteSetting?.companyName || "Novatek Enerji Mühendislik San. ve Tic. Ltd. Şti.",
     url: BASE_SITE_URL,
     logo: {
       "@type": "ImageObject",
       url: `${BASE_SITE_URL}/logo.png`,
-      caption: "Soykan Power Logo",
+      caption: "Novatek Enerji Logo",
     },
     description:
       "Elektrik Taahhüt, AG/OG/YG Şalt Tesisleri, Trafo Merkezleri, Endüstriyel Otomasyon (PLC/SCADA), MCC/ADP Panoları ve Çatı GES alanlarında anahtar teslim mühendislik ve taahhüt şirketi.",
     telephone: siteSetting?.phone || "+90 322 000 00 00",
-    email: siteSetting?.email || "info@soykanpower.com",
+    email: siteSetting?.email || "info@novatekenerji.com.tr",
     address: {
       "@type": "PostalAddress",
       streetAddress: siteSetting?.address || "Hacı Sabancı OSB / Adana",
@@ -74,8 +74,8 @@ export function generateOrganizationSchema(siteSetting?: {
       "Enerji Verimliliği ve Harmonik Filtreleme",
     ],
     sameAs: [
-      "https://www.linkedin.com/company/soykanpower",
-      "https://www.instagram.com/soykanpower",
+      "https://www.linkedin.com/company/novatekenerji",
+      "https://www.instagram.com/novatekenerji",
     ],
   };
 }
@@ -91,11 +91,11 @@ export function generateLocalBusinessSchema(siteSetting?: {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "@id": `${BASE_SITE_URL}/#localbusiness`,
-    name: siteSetting?.companyName || "Soykan Power - Adana Merkez",
+    name: siteSetting?.companyName || "Novatek Enerji - Adana Merkez",
     image: `${BASE_SITE_URL}/og-default.jpg`,
     url: BASE_SITE_URL,
     telephone: siteSetting?.phone || "+90 322 000 00 00",
-    email: siteSetting?.email || "info@soykanpower.com",
+    email: siteSetting?.email || "info@novatekenerji.com.tr",
     address: {
       "@type": "PostalAddress",
       streetAddress: siteSetting?.address || "Hacı Sabancı OSB",
@@ -142,7 +142,7 @@ export function generateRegionPageSchema(region: {
   metaDesc?: string;
   [key: string]: any;
 }) {
-  const pageTitle = region.metaTitle || region.title || `${region.name} Elektrik Taahhüt | Soykan Power`;
+  const pageTitle = region.metaTitle || region.title || `${region.name} Elektrik Taahhüt | Novatek Enerji`;
   return {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -233,7 +233,7 @@ export function generateTechnicalGuideArticleSchema(guide: TechnicalGuideData) {
     dateModified: new Date(guide.publishedAt).toISOString(),
     author: {
       "@type": "Organization",
-      name: guide.author || "Soykan Power Mühendislik Departmanı",
+      name: guide.author || "Novatek Enerji Mühendislik Departmanı",
       url: BASE_SITE_URL,
     },
     publisher: {
@@ -246,7 +246,7 @@ export function generateTechnicalGuideArticleSchema(guide: TechnicalGuideData) {
     },
     about: [
       { "@type": "Thing", name: guide.category },
-      { "@type": "Organization", name: "Soykan Power" },
+      { "@type": "Organization", name: "Novatek Enerji" },
     ],
   };
 }

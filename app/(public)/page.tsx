@@ -5,7 +5,7 @@ import { IntroSection } from "@/components/sections/IntroSection";
 import { ActivityAreasSection } from "@/components/sections/ActivityAreasSection";
 import { ProjectConfiguratorSection } from "@/components/sections/ProjectConfiguratorSection";
 import { ServicesGridSection } from "@/components/sections/ServicesGridSection";
-import { WhySoykanSection } from "@/components/sections/WhySoykanSection";
+import { WhyNovatekSection } from "@/components/sections/WhyNovatekSection";
 import { SectorsSection } from "@/components/sections/SectorsSection";
 import { FeaturedProjectsSection } from "@/components/sections/FeaturedProjectsSection";
 import { EngineeringApproachSection } from "@/components/sections/EngineeringApproachSection";
@@ -82,8 +82,8 @@ export default async function HomePage() {
         {/* 5. Services Grid */}
         <ServicesGridSection services={services} />
 
-        {/* 6. Why Soykan Power? */}
-        <WhySoykanSection />
+        {/* 6. Why Novatek Enerji? */}
+        <WhyNovatekSection />
 
         {/* 7. Sectoral Solutions */}
         <SectorsSection sectors={sectors} />

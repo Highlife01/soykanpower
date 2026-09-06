@@ -3,8 +3,8 @@ import { Metadata } from "next";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 
 export const metadata: Metadata = {
-  title: "Gizlilik Politikası | Soykan Power Mühendislik",
-  description: "Soykan Power web sitesi gizlilik politikası ve veri güvenliği ilkeleri.",
+  title: "Gizlilik Politikası | Novatek Enerji Mühendislik",
+  description: "Novatek Enerji web sitesi gizlilik politikası ve veri güvenliği ilkeleri.",
 };
 
 export default function PrivacyPolicyPage() {
@@ -37,7 +37,7 @@ export default function PrivacyPolicyPage() {
             Gizlilik İlkelerimiz
           </h2>
           <p>
-            Soykan Power, kullanıcılarının ve iş ortaklarının gizlilik haklarına azami özen göstermektedir. Web sitemiz üzerinden paylaştığınız iletişim verileri ve teklif formları ile yüklediğiniz proje dosyaları yalnızca tekliflendirme ve mühendislik değerlendirmesi amacıyla kullanılır.
+            Novatek Enerji, kullanıcılarının ve iş ortaklarının gizlilik haklarına azami özen göstermektedir. Web sitemiz üzerinden paylaştığınız iletişim verileri ve teklif formları ile yüklediğiniz proje dosyaları yalnızca tekliflendirme ve mühendislik değerlendirmesi amacıyla kullanılır.
           </p>
           <h2 className="text-xl font-bold text-white border-b border-slate-800 pb-3">
             Teknik Doküman ve Proje Dosyaları Güvenliği

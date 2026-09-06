@@ -167,7 +167,7 @@ export function Header({ categories = [], siteSetting }: HeaderProps) {
             </div>
             <div className="flex flex-col">
               <span className="text-xl sm:text-2xl font-black tracking-wider text-white flex items-center">
-                SOYKAN<span className="bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-transparent ml-1">POWER</span>
+                NOVATEK<span className="bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-transparent ml-1">ENERJİ</span>
               </span>
               <span className="text-[9px] tracking-widest uppercase font-bold text-slate-400 -mt-1 group-hover:text-slate-300 transition-colors">
                 Mühendislik & Otomasyon

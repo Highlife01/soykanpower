@@ -6,7 +6,7 @@ import { ShieldCheck, CheckCircle2, AlertTriangle, HeartPulse } from "lucide-rea
 
 export const metadata: Metadata = {
   title: "İş Sağlığı ve Güvenliği (İSG) Politikamız",
-  description: "Soykan Power iş sağlığı, saha güvenliği ve sıfır kaza politikaları.",
+  description: "Novatek Enerji iş sağlığı, saha güvenliği ve sıfır kaza politikaları.",
 };
 
 export default function OhsPolicyPage() {

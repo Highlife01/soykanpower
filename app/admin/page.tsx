@@ -95,7 +95,7 @@ export default async function AdminDashboardPage() {
         <div>
           <h1 className="text-2xl font-extrabold text-white">Yönetim Özeti</h1>
           <p className="text-xs sm:text-sm text-slate-400 mt-1">
-            Soykan Power kurumsal web sitesi veritabanı ve CRM durumu.
+            Novatek Enerji kurumsal web sitesi veritabanı ve CRM durumu.
           </p>
         </div>
 

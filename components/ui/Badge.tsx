@@ -13,12 +13,12 @@ export function Badge({
   className,
 }: BadgeProps) {
   const variants = {
-    default: "bg-slate-100 text-slate-800 border-slate-200",
-    amber: "bg-amber-500/10 text-amber-600 border-amber-500/20 font-medium",
-    blue: "bg-blue-500/10 text-blue-600 border-blue-500/20 font-medium",
-    green: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20 font-medium",
-    red: "bg-red-500/10 text-red-600 border-red-500/20 font-medium",
-    outline: "border-slate-300 text-slate-700 bg-transparent",
+    default: "bg-slate-800/90 text-slate-200 border-slate-700 font-semibold",
+    amber: "bg-amber-500/15 text-amber-300 border-amber-500/30 font-semibold",
+    blue: "bg-blue-500/15 text-blue-300 border-blue-500/30 font-semibold",
+    green: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30 font-semibold",
+    red: "bg-red-500/15 text-red-300 border-red-500/30 font-semibold",
+    outline: "border-slate-700 text-slate-200 bg-transparent font-medium",
   };
 
   return (

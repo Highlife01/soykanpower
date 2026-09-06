@@ -8,7 +8,7 @@ import { Newspaper, Calendar, ArrowRight, BookOpen, Globe2 } from "lucide-react"
 import { formatDate } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Teknik Makaleler & Mühendislik Blogu | Soykan Power",
+  title: "Teknik Makaleler & Mühendislik Blogu | Novatek Enerji",
   description:
     "Elektrik taahhüt, OG hücre sistemleri, trafo merkezleri, PLC & SCADA otomasyonu, kompanzasyon ve güneş enerjisi hakkında uzman mühendislik makaleleri.",
   alternates: {

@@ -6,19 +6,19 @@ import { blogPostsData } from "../data/blogPosts";
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log("Seeding Soykan Power database...");
+  console.log("Seeding Novatek Enerji database...");
 
   // 1. Admin User
-  const passwordHash = await bcrypt.hash("Admin2026!Soykan", 10);
+  const passwordHash = await bcrypt.hash("Admin2026!Novatek", 10);
   const admin = await prisma.user.upsert({
-    where: { email: "admin@soykanpower.com" },
+    where: { email: "admin@novatekenerji.com.tr" },
     update: {
       password: passwordHash,
     },
     create: {
-      email: "admin@soykanpower.com",
+      email: "admin@novatekenerji.com.tr",
       password: passwordHash,
-      name: "Soykan Power Yönetici",
+      name: "Novatek Enerji Yönetici",
       role: "ADMIN",
     },
   });
@@ -30,9 +30,9 @@ async function main() {
     update: {},
     create: {
       id: "default",
-      companyName: "Soykan Power Elektrik Mühendislik & Otomasyon",
+      companyName: "Novatek Enerji Mühendislik San. ve Tic. Ltd. Şti.",
       phone: "+90 (850) 000 00 00",
-      email: "info@soykanpower.com",
+      email: "info@novatekenerji.com.tr",
       address: "Endüstri ve Teknoloji Bölgesi, Mühendislik Merkezi",
       workingHours: "Hafta İçi: 08:30 - 18:00 | Cumartesi: 09:00 - 13:00",
       linkedinUrl: "https://linkedin.com",
@@ -40,7 +40,7 @@ async function main() {
       twitterUrl: "https://x.com",
       facebookUrl: "https://facebook.com",
       footerText: "Elektrik Taahhüt, Endüstriyel Otomasyon, Enerji Sistemleri ve Güneş Enerjisi alanlarında projelendirmeden devreye almaya kadar uçtan uca yüksek mühendislik çözümleri sunar.",
-      aboutSummary: "Soykan Power; elektrik taahhüt, endüstriyel otomasyon, enerji dağıtım ve güneş enerjisi sistemlerinde uluslararası standartlara uygun, güvenilir, verimli ve anahtar teslim mühendislik çözümleri üretmektedir.",
+      aboutSummary: "Novatek Enerji; elektrik taahhüt, endüstriyel otomasyon, enerji dağıtım ve güneş enerjisi sistemlerinde uluslararası standartlara uygun, güvenilir, verimli ve anahtar teslim mühendislik çözümleri üretmektedir.",
     },
   });
 
@@ -56,7 +56,7 @@ async function main() {
           title: "Alçak Gerilim (AG) Sistemleri",
           slug: "ag-sistemleri",
           shortDesc: "Endüstriyel tesisler ve ticari binalar için güvenli, standartlara uygun AG dağıtım, kablolama ve pano altyapıları.",
-          content: `Alçak gerilim (AG) sistemleri, modern sanayi tesisleri ve kurumsal yapıların kesintisiz enerji omurgasını oluşturur. Soykan Power olarak; tesis içi ana ve tali dağıtım hatları, busbar enerji iletim sistemleri, kablo taşıma güzergahları ve son kullanıcı besleme noktalarını IEC standartlarına tam uyumlu projelendirip devreye alıyoruz.
+          content: `Alçak gerilim (AG) sistemleri, modern sanayi tesisleri ve kurumsal yapıların kesintisiz enerji omurgasını oluşturur. Novatek Enerji olarak; tesis içi ana ve tali dağıtım hatları, busbar enerji iletim sistemleri, kablo taşıma güzergahları ve son kullanıcı besleme noktalarını IEC standartlarına tam uyumlu projelendirip devreye alıyoruz.
           
 Mühendislik ekibimiz; yük analizi, gerilim düşümü hesapları, kısa devre dayanım hesapları ve seçicilik koordinasyonunu titizlikle gerçekleştirerek maksimum operasyonel güvenlik ve minimum enerji kaybı sağlar.`,
           features: JSON.stringify([
@@ -90,7 +90,7 @@ Kablo başlığı uygulamaları, röle koordinasyonu, selektivite ayarları ve m
           title: "Yüksek Gerilim (YG) Sistemleri",
           slug: "yg-sistemleri",
           shortDesc: "YG şalt sahaları, iletim hatları arayüzleri ve yüksek gerilim trafo merkezleri altyapı mühendisliği.",
-          content: `Yüksek Gerilim tesisleri; ileri seviye mühendislik hesapları, özel güvenlik protokolleri ve yüksek disiplinli saha yönetimi gerektirir. Soykan Power; YG şalt sahası yerleşim projeleri, topraklama ağları hesaplamaları, parafudr ve kesici-ayırıcı gruplarının saha montaj ve testlerinde yetkin mühendislik hizmeti sunar.`,
+          content: `Yüksek Gerilim tesisleri; ileri seviye mühendislik hesapları, özel güvenlik protokolleri ve yüksek disiplinli saha yönetimi gerektirir. Novatek Enerji; YG şalt sahası yerleşim projeleri, topraklama ağları hesaplamaları, parafudr ve kesici-ayırıcı gruplarının saha montaj ve testlerinde yetkin mühendislik hizmeti sunar.`,
           features: JSON.stringify([
             "YG şalt sahası tasarımı ve elektromekanik montajı",
             "Primer ve sekonder koruma sistemleri",
@@ -118,7 +118,7 @@ Kablo başlığı uygulamaları, röle koordinasyonu, selektivite ayarları ve m
           title: "Trafo Merkezleri & Dağıtım Binaları",
           slug: "trafo-merkezleri",
           shortDesc: "Kuru ve yağlı tip trafo köşkleri, monoblok beton köşkler ve modüler dağıtım merkezleri kurulumu.",
-          content: `Trafo merkezleri; sanayi tesislerinin kesintisiz güç kaynağıdır. Soykan Power; beton köşk, sac köşk ve bina içi trafo merkezlerinde güç trafosu seçimi, havalandırma hesapları, yangın koruma önlemleri, bara bağlantıları ve yağ tutma çukuru detaylarına kadar eksiksiz kurulum ve devreye alma sağlar.`,
+          content: `Trafo merkezleri; sanayi tesislerinin kesintisiz güç kaynağıdır. Novatek Enerji; beton köşk, sac köşk ve bina içi trafo merkezlerinde güç trafosu seçimi, havalandırma hesapları, yangın koruma önlemleri, bara bağlantıları ve yağ tutma çukuru detaylarına kadar eksiksiz kurulum ve devreye alma sağlar.`,
           features: JSON.stringify([
             "Hermetik / genleşme depolu yağlı trafolar ve dökme reçineli kuru trafolar",
             "Monoblok beton ve prefabrik trafo köşk montajı",
@@ -288,7 +288,7 @@ Kablo başlığı uygulamaları, röle koordinasyonu, selektivite ayarları ve m
           title: "PLC Sistemleri ve Programlama",
           slug: "plc-otomasyon-sistemleri",
           shortDesc: "Siemens, Schneider, ABB, Rockwell PLC mimarileri ile güvenilir, modüler ve yüksek hızlı proses kontrolü.",
-          content: `Soykan Power; karmaşık üretim süreçleri, konveyör hatları, kimyasal reaktörler ve paketleme makineleri için IEC 61131-3 standartlarında (LAD, FBD, SCL, STL) PLC yazılımları geliştirir. Yedekli (redundant) CPU yapıları ve fail-safe (SIL2 / SIL3) güvenlik mimarileri ile sıfır duruş hedefi sunar.`,
+          content: `Novatek Enerji; karmaşık üretim süreçleri, konveyör hatları, kimyasal reaktörler ve paketleme makineleri için IEC 61131-3 standartlarında (LAD, FBD, SCL, STL) PLC yazılımları geliştirir. Yedekli (redundant) CPU yapıları ve fail-safe (SIL2 / SIL3) güvenlik mimarileri ile sıfır duruş hedefi sunar.`,
           features: JSON.stringify([
             "Siemens S7-1200 / S7-1500 / TIA Portal uzmanlığı",
             "Schneider Modicon, Rockwell Allen-Bradley, ABB PLC mimarileri",
@@ -597,7 +597,7 @@ Kablo başlığı uygulamaları, röle koordinasyonu, selektivite ayarları ve m
           iconName: s.iconName,
           order: s.order,
           categoryId: createdCat.id,
-          metaTitle: `${s.title} | Soykan Power Mühendislik`,
+          metaTitle: `${s.title} | Novatek Enerji Mühendislik`,
           metaDesc: s.shortDesc,
         },
         create: {
@@ -609,7 +609,7 @@ Kablo başlığı uygulamaları, röle koordinasyonu, selektivite ayarları ve m
           iconName: s.iconName,
           order: s.order,
           categoryId: createdCat.id,
-          metaTitle: `${s.title} | Soykan Power Mühendislik`,
+          metaTitle: `${s.title} | Novatek Enerji Mühendislik`,
           metaDesc: s.shortDesc,
         },
       });
@@ -623,7 +623,7 @@ Kablo başlığı uygulamaları, röle koordinasyonu, selektivite ayarları ve m
       title: "Demir & Çelik Sanayi",
       slug: "demir-celik",
       shortDesc: "Ağır ark ocakları, haddehane otomasyonları, harmonik filtreleme ve yüksek akım dağıtım sistemleri.",
-      content: `Demir ve çelik tesisleri; aşırı dinamik elektriksel yükler, yoğun harmonik bozulmalar ve zorlu ortam şartlarına sahiptir. Soykan Power olarak ark ocağı beslemeleri, hadde hatları senkronizasyonu, kompanzasyon ve yüksek sıcaklığa dayanıklı elektrifikasyon çözümleri sunuyoruz.`,
+      content: `Demir ve çelik tesisleri; aşırı dinamik elektriksel yükler, yoğun harmonik bozulmalar ve zorlu ortam şartlarına sahiptir. Novatek Enerji olarak ark ocağı beslemeleri, hadde hatları senkronizasyonu, kompanzasyon ve yüksek sıcaklığa dayanıklı elektrifikasyon çözümleri sunuyoruz.`,
       solutions: JSON.stringify([
         "Haddehane çok eksenli hız senkronizasyon sistemleri",
         "Dinamik tristörlü kompanzasyon ve aktif harmonik filtreleme",
@@ -827,7 +827,7 @@ Kablo başlığı uygulamaları, röle koordinasyonu, selektivite ayarları ve m
         solutions: s.solutions,
         iconName: s.iconName,
         order: s.order,
-        metaTitle: `${s.title} Çözümleri | Soykan Power Mühendislik`,
+        metaTitle: `${s.title} Çözümleri | Novatek Enerji Mühendislik`,
         metaDesc: s.shortDesc,
       },
       create: {
@@ -838,7 +838,7 @@ Kablo başlığı uygulamaları, röle koordinasyonu, selektivite ayarları ve m
         solutions: s.solutions,
         iconName: s.iconName,
         order: s.order,
-        metaTitle: `${s.title} Çözümleri | Soykan Power Mühendislik`,
+        metaTitle: `${s.title} Çözümleri | Novatek Enerji Mühendislik`,
         metaDesc: s.shortDesc,
       },
     });

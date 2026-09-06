@@ -92,20 +92,20 @@ export default async function TechnicalGuideDetailPage({
       />
 
       {/* Header */}
-      <div className="border-b border-slate-800 bg-slate-900/60 py-12 relative overflow-hidden">
+      <div className="border-b border-slate-800 bg-slate-900/80 py-12 relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
           <div className="flex flex-wrap items-center gap-3 text-xs">
-            <span className="px-2.5 py-1 rounded-lg bg-amber-500/10 text-amber-400 font-bold uppercase border border-amber-500/20">
+            <span className="px-2.5 py-1 rounded-lg bg-amber-500/15 text-amber-300 font-bold uppercase border border-amber-500/30">
               {guide.category}
             </span>
-            <span className="text-slate-500">•</span>
-            <span className="text-slate-400 flex items-center">
-              <Clock className="w-3.5 h-3.5 mr-1 text-slate-500" />
+            <span className="text-slate-400">•</span>
+            <span className="text-slate-300 flex items-center font-medium">
+              <Clock className="w-3.5 h-3.5 mr-1.5 text-slate-400" />
               <span>{guide.readTime}</span>
             </span>
-            <span className="text-slate-500">•</span>
-            <span className="text-slate-400 flex items-center">
-              <Calendar className="w-3.5 h-3.5 mr-1 text-slate-500" />
+            <span className="text-slate-400">•</span>
+            <span className="text-slate-300 flex items-center font-medium">
+              <Calendar className="w-3.5 h-3.5 mr-1.5 text-slate-400" />
               <span>{guide.publishedAt}</span>
             </span>
           </div>
@@ -114,11 +114,11 @@ export default async function TechnicalGuideDetailPage({
             {guide.title}
           </h1>
 
-          <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">
             {guide.summary}
           </p>
 
-          <div className="pt-2 text-xs text-slate-500 flex items-center space-x-2">
+          <div className="pt-2 text-xs text-slate-300 flex items-center space-x-2 font-medium">
             <User className="w-3.5 h-3.5 text-amber-400" />
             <span>Yazar: {guide.author}</span>
           </div>
@@ -130,12 +130,12 @@ export default async function TechnicalGuideDetailPage({
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
         {/* GEO Quick Answer Box */}
         {guide.quickAnswer && (
-          <div className="p-6 rounded-3xl bg-gradient-to-r from-amber-500/10 via-slate-900 to-slate-900 border border-amber-500/30 space-y-3 shadow-xl">
+          <div className="p-6 sm:p-7 rounded-3xl bg-slate-900/90 border border-amber-500/40 space-y-3 shadow-xl">
             <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-amber-400">
-              <Sparkles className="w-4 h-4" />
+              <Sparkles className="w-4 h-4 text-amber-400" />
               <span>Özet Cevap & Temel Tanım</span>
             </div>
-            <p className="text-sm text-slate-200 leading-relaxed font-medium">
+            <p className="text-sm sm:text-base text-slate-100 leading-relaxed font-medium">
               {guide.quickAnswer}
             </p>
           </div>
@@ -143,15 +143,15 @@ export default async function TechnicalGuideDetailPage({
 
         {/* Key Takeaways */}
         {guide.keyTakeaways && guide.keyTakeaways.length > 0 && (
-          <div className="p-6 sm:p-8 rounded-3xl bg-slate-900 border border-slate-800 space-y-4">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-300">
+          <div className="p-6 sm:p-8 rounded-3xl bg-slate-900/90 border border-slate-700/80 space-y-4 shadow-xl">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-amber-400">
               Öne Çıkan Mühendislik Notları
             </h3>
-            <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300">
+            <ul className="space-y-3 text-sm text-slate-100">
               {guide.keyTakeaways.map((item, idx) => (
-                <li key={idx} className="flex items-start space-x-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                  <span>{item}</span>
+                <li key={idx} className="flex items-start space-x-3">
+                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-1" />
+                  <span className="leading-relaxed">{item}</span>
                 </li>
               ))}
             </ul>
@@ -160,18 +160,19 @@ export default async function TechnicalGuideDetailPage({
 
         {/* Table of Contents */}
         {guide.tableOfContents && guide.tableOfContents.length > 0 && (
-          <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block">
+          <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-700/80 space-y-3 shadow-lg">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-200 font-bold block">
               İçindekiler
             </span>
-            <ul className="space-y-2 text-xs sm:text-sm">
+            <ul className="space-y-2.5 text-sm">
               {guide.tableOfContents.map((toc) => (
                 <li key={toc.id}>
                   <a
                     href={`#${toc.id}`}
-                    className="text-amber-400 hover:text-amber-300 transition-colors hover:underline"
+                    className="text-amber-400 hover:text-amber-300 font-semibold transition-colors hover:underline flex items-center"
                   >
-                    {toc.title}
+                    <ArrowRight className="w-3.5 h-3.5 mr-2 shrink-0 text-amber-500" />
+                    <span>{toc.title}</span>
                   </a>
                 </li>
               ))}
@@ -180,18 +181,18 @@ export default async function TechnicalGuideDetailPage({
         )}
 
         {/* Main Article Body */}
-        <article className="prose prose-invert prose-amber max-w-none text-slate-300 text-sm sm:text-base leading-relaxed space-y-6">
+        <article className="prose prose-invert prose-amber max-w-none text-slate-200 text-sm sm:text-base leading-relaxed space-y-6">
           <div
             dangerouslySetInnerHTML={{ __html: guide.contentHtml }}
-            className="space-y-6 [&_h2]:text-xl [&_h2]:sm:text-2xl [&_h2]:font-bold [&_h2]:text-white [&_h2]:pt-4 [&_h2]:border-b [&_h2]:border-slate-800 [&_h2]:pb-2 [&_h3]:text-lg [&_h3]:font-bold [&_h3]:text-slate-100 [&_p]:leading-relaxed [&_ul]:space-y-2 [&_ol]:space-y-2 [&_li]:text-slate-300 [&_strong]:text-amber-400"
+            className="space-y-6 [&_h2]:text-xl [&_h2]:sm:text-2xl [&_h2]:font-black [&_h2]:text-white [&_h2]:pt-6 [&_h2]:border-b [&_h2]:border-slate-700 [&_h2]:pb-3 [&_h3]:text-lg [&_h3]:font-bold [&_h3]:text-white [&_p]:text-slate-200 [&_p]:leading-relaxed [&_ul]:space-y-2.5 [&_ol]:space-y-2.5 [&_li]:text-slate-200 [&_strong]:text-amber-300 [&_strong]:font-bold"
           />
         </article>
 
         {/* FAQs */}
         {guide.faqs && guide.faqs.length > 0 && (
-          <div className="space-y-6 pt-6 border-t border-slate-800">
-            <h2 className="text-xl font-bold text-white flex items-center">
-              <HelpCircle className="w-5 h-5 text-amber-400 mr-2" />
+          <div className="space-y-6 pt-8 border-t border-slate-700/80">
+            <h2 className="text-xl sm:text-2xl font-bold text-white flex items-center">
+              <HelpCircle className="w-5 h-5 text-amber-400 mr-2.5" />
               <span>Sıkça Sorulan Sorular</span>
             </h2>
 
@@ -199,13 +200,13 @@ export default async function TechnicalGuideDetailPage({
               {guide.faqs.map((faq, idx) => (
                 <div
                   key={idx}
-                  className="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-2"
+                  className="p-6 rounded-2xl bg-slate-900/90 border border-slate-700/80 space-y-2.5 shadow-lg"
                 >
-                  <h3 className="text-sm font-bold text-white flex items-start">
+                  <h3 className="text-base font-bold text-white flex items-start">
                     <span className="text-amber-400 font-mono font-bold mr-2">Q.</span>
                     <span>{faq.question}</span>
                   </h3>
-                  <p className="text-xs text-slate-300 leading-relaxed pl-5 border-l border-slate-800">
+                  <p className="text-sm text-slate-200 leading-relaxed pl-5 border-l-2 border-amber-500/40">
                     {faq.answer}
                   </p>
                 </div>
@@ -215,12 +216,12 @@ export default async function TechnicalGuideDetailPage({
         )}
 
         {/* Bottom CTA Box */}
-        <div className="p-8 rounded-3xl bg-slate-900 border border-amber-500/30 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
-          <div className="space-y-1 text-center sm:text-left">
-            <h3 className="text-lg font-bold text-white">
+        <div className="p-8 rounded-3xl bg-slate-900 border border-amber-500/40 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
+          <div className="space-y-1.5 text-center sm:text-left">
+            <h3 className="text-xl font-bold text-white">
               Tesisiniz İçin Mühendislik Desteği Alın
             </h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-sm text-slate-300">
               Trafo, OG hücreleri, kompanzasyon veya otomasyon projelerinizi uzmanlarımızla görüşün.
             </p>
           </div>

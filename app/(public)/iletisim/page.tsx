@@ -122,7 +122,7 @@ export default function ContactPage() {
                       E-posta
                     </span>
                     <span className="text-slate-300 font-medium mt-0.5 block">
-                      info@soykanpower.com
+                      info@novatekenerji.com.tr
                     </span>
                   </div>
                 </div>

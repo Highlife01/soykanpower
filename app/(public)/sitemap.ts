@@ -5,7 +5,7 @@ import { REGION_SERVICES } from "@/data/regionServices";
 import { TECHNICAL_GUIDES } from "@/data/technicalGuides";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.soykanpower.com";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.novatekenerji.com.tr";
 
   // Static core routes
   const staticRoutes: MetadataRoute.Sitemap = [

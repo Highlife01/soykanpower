@@ -7,7 +7,7 @@ import { ShieldCheck, CheckCircle2, Award, Zap, Cpu, Sun } from "lucide-react";
 export const metadata: Metadata = {
   title: "Hakkımızda",
   description:
-    "Soykan Power; elektrik taahhüt, endüstriyel otomasyon, enerji sistemleri ve güneş enerjisi santrallerinde anahtar teslim mühendislik çözümleri sunar.",
+    "Novatek Enerji; elektrik taahhüt, endüstriyel otomasyon, enerji sistemleri ve güneş enerjisi santrallerinde anahtar teslim mühendislik çözümleri sunar.",
 };
 
 export default function AboutPage() {
@@ -44,7 +44,7 @@ export default function AboutPage() {
                 Mühendislik Odaklı Kurumsal Yaklaşım
               </h2>
               <p>
-                <strong className="text-white">Soykan Power</strong>; elektrik taahhüt,
+                <strong className="text-white">Novatek Enerji</strong>; elektrik taahhüt,
                 endüstriyel otomasyon, pano imalatı, güç kalitesi ve yenilenebilir güneş
                 enerjisi alanlarında faaliyet gösteren entegre bir mühendislik şirketidir.
               </p>

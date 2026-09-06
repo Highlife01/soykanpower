@@ -80,7 +80,7 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
                   ) : (
                     <div className="flex flex-col items-center justify-center p-6 text-center text-slate-500">
                       <Building2 className="w-8 h-8 text-slate-600 mb-2" />
-                      <span className="text-xs font-mono">Soykan Power Proje Kaydı</span>
+                      <span className="text-xs font-mono">Novatek Enerji Proje Kaydı</span>
                     </div>
                   )}
                   <span className="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-slate-950/90 backdrop-blur-md text-amber-400 border border-amber-500/30">

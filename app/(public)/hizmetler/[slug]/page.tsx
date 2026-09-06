@@ -37,13 +37,13 @@ export async function generateMetadata({
   if (!service) return { title: "Hizmet Bulunamadı" };
 
   return {
-    title: service.metaTitle || `${service.title} | Soykan Power`,
+    title: service.metaTitle || `${service.title} | Novatek Enerji`,
     description: service.metaDesc || service.shortDesc,
     alternates: {
       canonical: `/hizmetler/${service.slug}`,
     },
     openGraph: {
-      title: `${service.title} | Soykan Power Mühendislik`,
+      title: `${service.title} | Novatek Enerji Mühendislik`,
       description: service.shortDesc,
       type: "website",
     },

@@ -22,31 +22,31 @@ async function main() {
   const templates = [
     {
       templateType: "CITY",
-      titlePattern: "{city} Elektrik Taahhüt, Enerji ve Otomasyon | Soykan Power",
-      descPattern: "Soykan Power, {city} ve çevresinde endüstriyel elektrik taahhüt, OG hücre, trafo merkezi, PLC/SCADA otomasyonu ve GES çözümleri sunar.",
+      titlePattern: "{city} Elektrik Taahhüt, Enerji ve Otomasyon | Novatek Enerji",
+      descPattern: "Novatek Enerji, {city} ve çevresinde endüstriyel elektrik taahhüt, OG hücre, trafo merkezi, PLC/SCADA otomasyonu ve GES çözümleri sunar.",
       h1Pattern: "{city} Elektrik Taahhüt & Mühendislik Hizmetleri",
     },
     {
       templateType: "CITY_SERVICE",
-      titlePattern: "{city} {service} | Soykan Power Mühendislik",
-      descPattern: "Soykan Power; {city} bölgesinde {service} alanında anahtar teslim mühendislik, kurulum, test ve devreye alma hizmetleri sunmaktadır.",
+      titlePattern: "{city} {service} | Novatek Enerji Mühendislik",
+      descPattern: "Novatek Enerji; {city} bölgesinde {service} alanında anahtar teslim mühendislik, kurulum, test ve devreye alma hizmetleri sunmaktadır.",
       h1Pattern: "{city} {service} Çözümleri ve Mühendislik",
     },
     {
       templateType: "CITY_SECTOR",
-      titlePattern: "{city} {sector} Elektrik ve Otomasyon Çözümleri | Soykan Power",
-      descPattern: "Soykan Power, {city} bölgesindeki {sector} tesislerine özel AG/OG elektrifikasyon, otomasyon ve enerji yönetimi sunar.",
+      titlePattern: "{city} {sector} Elektrik ve Otomasyon Çözümleri | Novatek Enerji",
+      descPattern: "Novatek Enerji, {city} bölgesindeki {sector} tesislerine özel AG/OG elektrifikasyon, otomasyon ve enerji yönetimi sunar.",
       h1Pattern: "{city} {sector} Tesisleri İçin Mühendislik Çözümleri",
     },
     {
       templateType: "SERVICE",
-      titlePattern: "{service} | Soykan Power Mühendislik",
-      descPattern: "Soykan Power, endüstriyel standartlarda {service} hizmetleri sunar. Projelendirme, montaj, test ve devreye alma.",
+      titlePattern: "{service} | Novatek Enerji Mühendislik",
+      descPattern: "Novatek Enerji, endüstriyel standartlarda {service} hizmetleri sunar. Projelendirme, montaj, test ve devreye alma.",
       h1Pattern: "{service}",
     },
     {
       templateType: "BLOG",
-      titlePattern: "{title} | Soykan Power Mühendislik Bülteni",
+      titlePattern: "{title} | Novatek Enerji Mühendislik Bülteni",
       descPattern: "{summary}",
       h1Pattern: "{title}",
     },
@@ -67,8 +67,8 @@ async function main() {
       slug: "adana",
       countryId: turkey.id,
       regionType: "CITY",
-      shortDescription: "Soykan Power ana mühendislik merkezi ve operasyon üssü. Adana Hacı Sabancı OSB ve tüm sanayi bölgelerinde tam kapsamlı hizmet.",
-      description: "Soykan Power, Adana merkezli operasyon gücüyle Adana Hacı Sabancı Organize Sanayi Bölgesi (AOSB), Ceyhan Enerji İhtisas Endüstri Bölgesi ve tüm sanayi kuruluşlarına anahtar teslim elektrik taahhüt, OG hücre, trafo köşkleri, PLC/SCADA ve çatı GES mühendisliği sunmaktadır.",
+      shortDescription: "Novatek Enerji ana mühendislik merkezi ve operasyon üssü. Adana Hacı Sabancı OSB ve tüm sanayi bölgelerinde tam kapsamlı hizmet.",
+      description: "Novatek Enerji, Adana merkezli operasyon gücüyle Adana Hacı Sabancı Organize Sanayi Bölgesi (AOSB), Ceyhan Enerji İhtisas Endüstri Bölgesi ve tüm sanayi kuruluşlarına anahtar teslim elektrik taahhüt, OG hücre, trafo köşkleri, PLC/SCADA ve çatı GES mühendisliği sunmaktadır.",
       heroTitle: "Adana Elektrik Taahhüt, OG & Otomasyon Mühendisliği",
       heroDescription: "Merkez ofisimizden Adana sanayisine 7/24 kesintisiz yüksek mühendislik, hızlı saha mobilizasyonu ve tip testli elektrifikasyon çözümleri.",
       isServiceArea: true,
@@ -77,8 +77,8 @@ async function main() {
       indexable: true,
       sortOrder: 1,
       status: "PUBLISHED",
-      metaTitle: "Adana Elektrik Taahhüt, Trafo & Otomasyon Firması | Soykan Power",
-      metaDesc: "Soykan Power; Adana'da elektrik taahhüt, OG hücre sistemleri, trafo merkezleri, PLC/SCADA otomasyonu ve GES projelerinde anahtar teslim mühendislik sunar.",
+      metaTitle: "Adana Elektrik Taahhüt, Trafo & Otomasyon Firması | Novatek Enerji",
+      metaDesc: "Novatek Enerji; Adana'da elektrik taahhüt, OG hücre sistemleri, trafo merkezleri, PLC/SCADA otomasyonu ve GES projelerinde anahtar teslim mühendislik sunar.",
       districts: [
         { name: "Seyhan", slug: "seyhan", isPublished: true, indexable: true },
         { name: "Çukurova", slug: "cukurova", isPublished: true, indexable: true },
@@ -89,7 +89,7 @@ async function main() {
       faqs: [
         {
           question: "Adana'da acil OG arıza ve trafo manevra desteği sağlıyor musunuz?",
-          answer: "Evet, Soykan Power'ın operasyon merkezi Adana'da olduğu için Adana Hacı Sabancı OSB ve çevre sanayi sitelerine 7/24 acil teknik müdahale ve süpervizörlük desteği sağlanmaktadır.",
+          answer: "Evet, Novatek Enerji'ın operasyon merkezi Adana'da olduğu için Adana Hacı Sabancı OSB ve çevre sanayi sitelerine 7/24 acil teknik müdahale ve süpervizörlük desteği sağlanmaktadır.",
         },
         {
           question: "Adana'da çatı GES projeleri için TEDAŞ ve Toroslar EDAŞ süreçlerini siz mi yürütüyorsunuz?",
@@ -112,7 +112,7 @@ async function main() {
       indexable: true,
       sortOrder: 2,
       status: "PUBLISHED",
-      metaTitle: "Mersin Elektrik Taahhüt ve Endüstriyel Otomasyon | Soykan Power",
+      metaTitle: "Mersin Elektrik Taahhüt ve Endüstriyel Otomasyon | Novatek Enerji",
       metaDesc: "Mersin ve Tarsus bölgesinde trafo merkezleri, OG hücre montajı, fabrika elektrifikasyonu, PLC otomasyon ve liman elektrik taahhüt hizmetleri.",
       districts: [
         { name: "Akdeniz", slug: "akdeniz", isPublished: true, indexable: true },
@@ -142,7 +142,7 @@ async function main() {
       indexable: true,
       sortOrder: 3,
       status: "PUBLISHED",
-      metaTitle: "Gaziantep Elektrik Taahhüt ve Fabrika Otomasyonu | Soykan Power",
+      metaTitle: "Gaziantep Elektrik Taahhüt ve Fabrika Otomasyonu | Novatek Enerji",
       metaDesc: "Gaziantep OSB fabrikaları için OG trafo merkezleri, tip testli MCC/ADP panoları, PLC/SCADA yazılımları ve çatı GES EPC mühendisliği.",
       districts: [
         { name: "Şehitkamil (Başpınar OSB)", slug: "sehitkamil", isPublished: true, indexable: true },
@@ -171,7 +171,7 @@ async function main() {
       indexable: true,
       sortOrder: 4,
       status: "PUBLISHED",
-      metaTitle: "Hatay & İskenderun Elektrik Taahhüt ve OG Sistemleri | Soykan Power",
+      metaTitle: "Hatay & İskenderun Elektrik Taahhüt ve OG Sistemleri | Novatek Enerji",
       metaDesc: "Hatay ve İskenderun'da demir-çelik elektrifikasyonu, OG trafo kurulumu, liman elektrik sistemleri ve endüstriyel taahhüt hizmetleri.",
       districts: [
         { name: "İskenderun", slug: "iskenderun", isPublished: true, indexable: true },
@@ -196,7 +196,7 @@ async function main() {
       indexable: true,
       sortOrder: 5,
       status: "PUBLISHED",
-      metaTitle: "Osmaniye Elektrik Taahhüt ve Trafo Sistemleri | Soykan Power",
+      metaTitle: "Osmaniye Elektrik Taahhüt ve Trafo Sistemleri | Novatek Enerji",
       metaDesc: "Osmaniye OSB fabrikaları için anahtar teslim elektrik taahhüt, OG hücre montajı, trafo merkezleri ve endüstriyel otomasyon.",
       districts: [
         { name: "Merkez", slug: "merkez", isPublished: true, indexable: true },
@@ -220,7 +220,7 @@ async function main() {
       indexable: true,
       sortOrder: 6,
       status: "PUBLISHED",
-      metaTitle: "Niğde Elektrik Taahhüt, Trafo ve GES Projeleri | Soykan Power",
+      metaTitle: "Niğde Elektrik Taahhüt, Trafo ve GES Projeleri | Novatek Enerji",
       metaDesc: "Niğde ve Bor OSB sanayi tesislerinde elektrik taahhüt, trafo merkezi kurulumu, kompanzasyon ve güneş enerjisi EPC hizmetleri.",
       districts: [
         { name: "Merkez", slug: "merkez", isPublished: true, indexable: true },
@@ -243,7 +243,7 @@ async function main() {
       indexable: true,
       sortOrder: 7,
       status: "PUBLISHED",
-      metaTitle: "Antalya Elektrik Taahhüt, Otel Elektrifikasyonu ve GES | Soykan Power",
+      metaTitle: "Antalya Elektrik Taahhüt, Otel Elektrifikasyonu ve GES | Novatek Enerji",
       metaDesc: "Antalya'da otel elektrik taahhüdü, BMS bina otomasyonu, trafo merkezleri, jeneratör senkronizasyonu ve çatı GES santralleri.",
       districts: [
         { name: "Muratpaşa", slug: "muratpasa", isPublished: true, indexable: true },
@@ -274,7 +274,7 @@ async function main() {
       indexable: true,
       sortOrder: 8,
       status: "PUBLISHED",
-      metaTitle: "Isparta Elektrik Taahhüt, Trafo ve Güneş Enerjisi | Soykan Power",
+      metaTitle: "Isparta Elektrik Taahhüt, Trafo ve Güneş Enerjisi | Novatek Enerji",
       metaDesc: "Isparta OSB ve çevre ilçelerde elektrik taahhüt, trafo köşkleri, soğuk hava otomasyonu ve anahtar teslim GES santralleri.",
       districts: [
         { name: "Merkez", slug: "merkez", isPublished: true, indexable: true },
@@ -298,7 +298,7 @@ async function main() {
       indexable: true,
       sortOrder: 9,
       status: "PUBLISHED",
-      metaTitle: "KKTC Elektrik Taahhüt, Otel Elektrifikasyonu ve GES | Soykan Power",
+      metaTitle: "KKTC Elektrik Taahhüt, Otel Elektrifikasyonu ve GES | Novatek Enerji",
       metaDesc: "Kuzey Kıbrıs Türk Cumhuriyeti (Lefkoşa, Girne, Mağusa) elektrik taahhüt projeleri, otel elektrik sistemleri ve güneş enerjisi santralleri.",
       districts: [
         { name: "Lefkoşa", slug: "lefkosa", isPublished: true, indexable: true },
@@ -421,8 +421,8 @@ async function main() {
             published: true,
             indexable: true,
             customTitle: `${reg.name} ${allServices.find((s) => s.id === sId)?.title}`,
-            metaTitle: `${reg.name} ${allServices.find((s) => s.id === sId)?.title} | Soykan Power`,
-            metaDesc: `Soykan Power, ${reg.name} bölgesinde ${allServices.find((s) => s.id === sId)?.title} alanında anahtar teslim mühendislik ve saha çözümleri sunar.`,
+            metaTitle: `${reg.name} ${allServices.find((s) => s.id === sId)?.title} | Novatek Enerji`,
+            metaDesc: `Novatek Enerji, ${reg.name} bölgesinde ${allServices.find((s) => s.id === sId)?.title} alanında anahtar teslim mühendislik ve saha çözümleri sunar.`,
           },
           create: {
             regionId: region.id,
@@ -431,8 +431,8 @@ async function main() {
             published: true,
             indexable: true,
             customTitle: `${reg.name} ${allServices.find((s) => s.id === sId)?.title}`,
-            metaTitle: `${reg.name} ${allServices.find((s) => s.id === sId)?.title} | Soykan Power`,
-            metaDesc: `Soykan Power, ${reg.name} bölgesinde ${allServices.find((s) => s.id === sId)?.title} alanında anahtar teslim mühendislik ve saha çözümleri sunar.`,
+            metaTitle: `${reg.name} ${allServices.find((s) => s.id === sId)?.title} | Novatek Enerji`,
+            metaDesc: `Novatek Enerji, ${reg.name} bölgesinde ${allServices.find((s) => s.id === sId)?.title} alanında anahtar teslim mühendislik ve saha çözümleri sunar.`,
           },
         });
       }

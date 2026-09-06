@@ -258,7 +258,7 @@ export function ProjectConfiguratorSection() {
                 <div className="p-4 rounded-2xl bg-amber-500/5 border border-amber-500/15 space-y-2 text-xs text-slate-300">
                   <div className="flex items-center space-x-2 text-amber-400 font-bold text-[11px]">
                     <CheckCircle2 className="w-4 h-4" />
-                    <span>Soykan Power EPC Güvenceleri:</span>
+                    <span>Novatek Enerji EPC Güvenceleri:</span>
                   </div>
                   <ul className="space-y-1 text-[11px] text-slate-400 pl-6 list-disc">
                     <li>3D EPLAN Projelendirme & Kısa Devre Hesapları</li>

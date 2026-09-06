@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 
 const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || "soykan_power_default_jwt_secret_change_in_production"
+  process.env.JWT_SECRET || "novatek_enerji_default_jwt_secret_change_in_production"
 );
 
 export async function middleware(request: NextRequest) {
@@ -11,7 +11,7 @@ export async function middleware(request: NextRequest) {
 
   // Protect admin routes except login
   if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
-    const sessionCookie = request.cookies.get("soykan_admin_session")?.value;
+    const sessionCookie = request.cookies.get("novatek_admin_session")?.value;
 
     if (!sessionCookie) {
       const loginUrl = new URL("/admin/login", request.url);
@@ -31,7 +31,7 @@ export async function middleware(request: NextRequest) {
 
   // Redirect to admin dashboard if already logged in and visiting login page
   if (pathname === "/admin/login") {
-    const sessionCookie = request.cookies.get("soykan_admin_session")?.value;
+    const sessionCookie = request.cookies.get("novatek_admin_session")?.value;
     if (sessionCookie) {
       try {
         await jwtVerify(sessionCookie, JWT_SECRET);

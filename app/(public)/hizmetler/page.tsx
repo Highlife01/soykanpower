@@ -8,7 +8,7 @@ import { Zap, ArrowRight, Check, ChevronRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "Hizmetlerimiz | Elektrik Taahhüt, Otomasyon & Enerji Çözümleri",
   description:
-    "Soykan Power mühendislik hizmetleri: AG/OG/YG elektrik taahhüt, trafo merkezleri, PLC/SCADA endüstriyel otomasyon, MCC panoları ve güneş enerjisi.",
+    "Novatek Enerji mühendislik hizmetleri: AG/OG/YG elektrik taahhüt, trafo merkezleri, PLC/SCADA endüstriyel otomasyon, MCC panoları ve güneş enerjisi.",
 };
 
 export default async function ServicesPage() {

@@ -6,7 +6,7 @@ import { ShieldCheck, Award, HeartHandshake, Zap, Users, Compass } from "lucide-
 
 export const metadata: Metadata = {
   title: "Değerlerimiz",
-  description: "Soykan Power kurumsal değerleri ve mühendislik etik ilkeleri.",
+  description: "Novatek Enerji kurumsal değerleri ve mühendislik etik ilkeleri.",
 };
 
 export default function ValuesPage() {

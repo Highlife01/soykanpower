@@ -7,9 +7,9 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { Briefcase, MapPin, Clock, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Kariyer | Soykan Power Mühendislik",
+  title: "Kariyer | Novatek Enerji Mühendislik",
   description:
-    "Soykan Power bünyesinde açık mühendislik, otomasyon ve saha pozisyonları. Başvuru yapın ve ekibimize katılın.",
+    "Novatek Enerji bünyesinde açık mühendislik, otomasyon ve saha pozisyonları. Başvuru yapın ve ekibimize katılın.",
 };
 
 export default async function CareersPage() {

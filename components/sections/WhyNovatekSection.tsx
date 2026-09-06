@@ -1,7 +1,7 @@
 import React from "react";
 import { ShieldCheck, Cpu, Award, Zap, Clock, Users, CheckCircle2, XCircle } from "lucide-react";
 
-export function WhySoykanSection() {
+export function WhyNovatekSection() {
   const points = [
     {
       icon: ShieldCheck,
@@ -45,22 +45,22 @@ export function WhySoykanSection() {
     {
       criterion: "Proje Tasarımı",
       traditional: "Basit 2D şemalar, yetersiz hesaplamalar",
-      soykan: "EPLAN Pro Panel 3D & Termal / Kısa Devre Simülasyonu",
+      novatek: "EPLAN Pro Panel 3D & Termal / Kısa Devre Simülasyonu",
     },
     {
       criterion: "Pano İmalatı",
       traditional: "Standartsız atölye montajı, formsüz",
-      soykan: "IEC 61439-1/2 Tip Testli & Form 4b Bölümlendirmeli",
+      novatek: "IEC 61439-1/2 Tip Testli & Form 4b Bölümlendirmeli",
     },
     {
       criterion: "Otomasyon & Yazılım",
       traditional: "Kapalı ve dokümante edilmemiş kodlar",
-      soykan: "IEC 61131-3 Uyumlu Modüler, Şeffaf ve Dokümante PLC",
+      novatek: "IEC 61131-3 Uyumlu Modüler, Şeffaf ve Dokümante PLC",
     },
     {
       criterion: "Test & Devreye Alma",
       traditional: "Sadece enerjilendirme, yüzeysel kontrol",
-      soykan: "Resmi FAT (Fabrika Kabul) ve SAT (Saha Kabul) Protokolleri",
+      novatek: "Resmi FAT (Fabrika Kabul) ve SAT (Saha Kabul) Protokolleri",
     },
   ];
 
@@ -77,7 +77,7 @@ export function WhySoykanSection() {
             <span>Kurumsal Değer Önerimiz</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
-            Neden Soykan Power?
+            Neden Novatek Enerji?
           </h2>
           <p className="text-sm sm:text-base text-slate-400">
             Endüstriyel tesislerinizin enerji ve otomasyon altyapısını güvenle emanet edebileceğiniz kurumsal mühendislik ilkelerimiz ve fark yaratan standartlarımız.
@@ -116,7 +116,7 @@ export function WhySoykanSection() {
         <div className="p-8 sm:p-10 rounded-3xl bg-slate-900/90 border border-slate-800/90 shadow-2xl backdrop-blur-xl">
           <div className="text-center max-w-2xl mx-auto mb-8">
             <h3 className="text-xl sm:text-2xl font-black text-white">
-              Geleneksel Taahhüt Yaklaşımı vs. Soykan Power EPC Standardı
+              Geleneksel Taahhüt Yaklaşımı vs. Novatek Enerji EPC Standardı
             </h3>
             <p className="text-xs text-slate-400 mt-1">
               Mühendislik kalitemizin sahaya yansıyan somut teknik farkları
@@ -139,7 +139,7 @@ export function WhySoykanSection() {
                   </div>
                   <div className="flex items-start space-x-2 text-slate-200 font-semibold pt-1 border-t border-slate-900">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                    <span className="text-white">{item.soykan}</span>
+                    <span className="text-white">{item.novatek}</span>
                   </div>
                 </div>
               </div>

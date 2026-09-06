@@ -53,7 +53,7 @@ export async function generateMetadata({
   });
 
   if (dbRegion) {
-    const title = dbRegion.metaTitle || `${dbRegion.name} Elektrik Taahhüt & Otomasyon | Soykan Power`;
+    const title = dbRegion.metaTitle || `${dbRegion.name} Elektrik Taahhüt & Otomasyon | Novatek Enerji`;
     const description = dbRegion.metaDesc || dbRegion.shortDescription || dbRegion.description || "";
     return {
       title,
@@ -161,7 +161,7 @@ export default async function RegionDetailPage({ params }: RegionPageProps) {
       { step: "04", title: "Resmi Kabul ve Devreye Alma", description: "Tüm testler tamamlanarak dağıtım kurumu resmi kabulüyle sistem enerjilendirilir." },
     ],
     faqs: faqs,
-    metaTitle: dbRegion?.metaTitle || `${regionName} Elektrik Taahhüt | Soykan Power`,
+    metaTitle: dbRegion?.metaTitle || `${regionName} Elektrik Taahhüt | Novatek Enerji`,
     metaDesc: dbRegion?.metaDesc || shortDesc,
   });
 

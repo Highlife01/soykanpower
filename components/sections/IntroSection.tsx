@@ -25,7 +25,7 @@ export function IntroSection() {
             </h2>
 
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              Soykan Power; endüstriyel tesislerin enerji altyapılarından üretim
+              Novatek Enerji; endüstriyel tesislerin enerji altyapılarından üretim
               hatlarının otomasyonuna, Form 4b tip testli pano imalatından
               sürdürülebilir çatı ve arazi güneş enerjisi santrallerine kadar
               geniş bir mühendislik disiplinini tek çatı altında buluşturur.

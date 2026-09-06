@@ -6,7 +6,7 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { Factory, ArrowRight, ChevronRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Sektörel Çözümler | Soykan Power Mühendislik",
+  title: "Sektörel Çözümler | Novatek Enerji Mühendislik",
   description:
     "Demir çelik, makine imalat, tekstil, kablo, gıda, otomotiv, su arıtma ve kamu tesisleri için endüstriye özel mühendislik çözümleri.",
 };

@@ -29,7 +29,7 @@ export function AdminHeader({ user }: AdminHeaderProps) {
     <header className="h-16 bg-slate-900 border-b border-slate-800 px-6 flex items-center justify-between shrink-0">
       <div className="flex items-center space-x-3">
         <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-          Soykan Power Mühendislik Yönetim Paneli
+          Novatek Enerji Mühendislik Yönetim Paneli
         </span>
       </div>
 
@@ -44,7 +44,7 @@ export function AdminHeader({ user }: AdminHeaderProps) {
               {user?.name || "Yönetici"}
             </span>
             <span className="text-[10px] text-slate-400">
-              {user?.email || "admin@soykanpower.com"}
+              {user?.email || "admin@novatekenerji.com.tr"}
             </span>
           </div>
         </div>

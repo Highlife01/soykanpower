@@ -75,7 +75,7 @@ export async function generateMetadata({
       },
     });
 
-    const title = dbRelation?.metaTitle || `${dbRegion.name} ${dbService.title} | Soykan Power Mühendislik`;
+    const title = dbRelation?.metaTitle || `${dbRegion.name} ${dbService.title} | Novatek Enerji Mühendislik`;
     const description = dbRelation?.metaDesc || `${dbRegion.name} bölgesinde ${dbService.title} anahtar teslim mühendislik ve kurulum hizmetleri.`;
 
     return {
@@ -199,7 +199,7 @@ export default async function RegionServiceDetailPage({
       { title: "Devreye Alma", desc: "Resmi kabuller tamamlanarak güvenle enerjilendirilir." },
     ],
     faqs: faqs,
-    metaTitle: `${regionName} ${serviceTitle} | Soykan Power`,
+    metaTitle: `${regionName} ${serviceTitle} | Novatek Enerji`,
     metaDesc: pageIntro.slice(0, 160),
   });
 

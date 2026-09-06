@@ -22,7 +22,7 @@ export function CorporateSidebar() {
 
   return (
     <aside className="w-full lg:w-72 shrink-0 space-y-6">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
+      <div className="bg-slate-900/90 border border-slate-700/80 rounded-2xl p-4 shadow-xl">
         <h3 className="text-xs font-bold uppercase tracking-wider text-amber-400 px-3 py-2 border-b border-slate-800 mb-2">
           Kurumsal Menü
         </h3>
@@ -38,23 +38,23 @@ export function CorporateSidebar() {
                   "flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-colors",
                   isActive
                     ? "bg-amber-500 text-slate-950 font-bold shadow-md shadow-amber-500/20"
-                    : "text-slate-300 hover:text-white hover:bg-slate-800"
+                    : "text-slate-200 hover:text-white hover:bg-slate-800"
                 )}
               >
                 <div className="flex items-center space-x-2.5">
                   <Icon className={cn("w-4 h-4", isActive ? "text-slate-950" : "text-amber-400")} />
                   <span>{link.title}</span>
                 </div>
-                <ChevronRight className={cn("w-4 h-4", isActive ? "text-slate-950" : "text-slate-600")} />
+                <ChevronRight className={cn("w-4 h-4", isActive ? "text-slate-950" : "text-slate-400")} />
               </Link>
             );
           })}
         </nav>
       </div>
 
-      <div className="p-6 rounded-2xl bg-gradient-to-br from-amber-500/10 to-amber-600/5 border border-amber-500/20 text-slate-200">
+      <div className="p-6 rounded-2xl bg-gradient-to-br from-amber-500/15 to-amber-600/10 border border-amber-500/30 text-slate-200">
         <h4 className="text-sm font-bold text-white mb-2">Mühendislik Desteği</h4>
-        <p className="text-xs text-slate-400 leading-relaxed mb-4">
+        <p className="text-xs text-slate-300 leading-relaxed mb-4">
           Tesisinizin elektrik, otomasyon veya GES projeleri için teknik ekibimizle iletişime geçin.
         </p>
         <Link

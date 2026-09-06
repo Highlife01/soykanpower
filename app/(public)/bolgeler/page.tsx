@@ -15,14 +15,14 @@ import { generateBreadcrumbSchema } from "@/lib/seo";
 export const revalidate = 3600; // 1 hour ISR revalidation
 
 export const metadata: Metadata = {
-  title: "Hizmet Verdiğimiz Bölgeler & Sanayi Merkezleri | Soykan Power",
+  title: "Hizmet Verdiğimiz Bölgeler & Sanayi Merkezleri | Novatek Enerji",
   description:
-    "Soykan Power; Adana merkezli olarak Mersin, Gaziantep, Hatay, Osmaniye, Antalya, Isparta, Niğde ve KKTC sanayi tesisleri ve otellerine elektrik taahhüt, trafo, otomasyon ve GES hizmeti sunar.",
+    "Novatek Enerji; Adana merkezli olarak Mersin, Gaziantep, Hatay, Osmaniye, Antalya, Isparta, Niğde ve KKTC sanayi tesisleri ve otellerine elektrik taahhüt, trafo, otomasyon ve GES hizmeti sunar.",
   alternates: {
     canonical: "/bolgeler",
   },
   openGraph: {
-    title: "Hizmet Verdiğimiz Bölgeler | Soykan Power Mühendislik",
+    title: "Hizmet Verdiğimiz Bölgeler | Novatek Enerji Mühendislik",
     description:
       "Adana, Mersin, Gaziantep, Hatay, Osmaniye, Antalya, Isparta, Niğde ve KKTC sanayi merkezlerinde yüksek güçlü elektrik mühendisliği ve otomasyon taahhüdü.",
   },
@@ -69,7 +69,7 @@ export default async function RegionsIndexPage() {
             Hizmet Verdiğimiz <span className="text-amber-400">Bölgeler</span> & Sanayi Havzaları
           </h1>
           <p className="text-sm sm:text-base text-slate-400 mt-4 max-w-3xl leading-relaxed">
-            Soykan Power; Adana ana merkezi olmak üzere Çukurova, Akdeniz, Güneydoğu Anadolu ve KKTC genelindeki organize sanayi bölgeleri, limanlar, ağır sanayi tesisleri ve oteller için uçtan uca elektrik mühendisliği, trafo merkezleri, PLC/SCADA otomasyonu ve GES taahhüt hizmetleri sunmaktadır.
+            Novatek Enerji; Adana ana merkezi olmak üzere Çukurova, Akdeniz, Güneydoğu Anadolu ve KKTC genelindeki organize sanayi bölgeleri, limanlar, ağır sanayi tesisleri ve oteller için uçtan uca elektrik mühendisliği, trafo merkezleri, PLC/SCADA otomasyonu ve GES taahhüt hizmetleri sunmaktadır.
           </p>
         </div>
       </div>

@@ -74,7 +74,7 @@ export function FloatingQuickActions({
           {/* Action 2: WhatsApp Hızlı Destek */}
           <a
             href={`https://wa.me/${cleanWhatsapp}?text=${encodeURIComponent(
-              "Merhaba Soykan Power Mühendislik, endüstriyel elektrik / otomasyon projemiz için bilgi ve keşif talep etmek istiyoruz."
+              "Merhaba Novatek Enerji Mühendislik, endüstriyel elektrik / otomasyon projemiz için bilgi ve keşif talep etmek istiyoruz."
             )}`}
             target="_blank"
             rel="noopener noreferrer"

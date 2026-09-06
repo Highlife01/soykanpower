@@ -50,7 +50,7 @@ export function EngineeringApproachSection() {
 
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
               Mühendislik; varsayımlara değil, matematiksel ve fiziksel hesaplamalara dayanır.
-              Soykan Power olarak sahada uygulanacak her kablo kesiti, şalter açma eğrisi,
+              Novatek Enerji olarak sahada uygulanacak her kablo kesiti, şalter açma eğrisi,
               harmonik rezonans noktası ve PLC komutu önceden simüle edilir.
             </p>
 
@@ -131,7 +131,7 @@ export function EngineeringApproachSection() {
 
             <div className="p-4 rounded-2xl bg-slate-900/50 border border-slate-800 flex items-center justify-between text-xs">
               <span className="text-slate-400">Teknik dokümantasyon ve şartname analizi için:</span>
-              <span className="font-bold text-amber-400">info@soykanpower.com</span>
+              <span className="font-bold text-amber-400">info@novatekenerji.com.tr</span>
             </div>
           </div>
         </div>

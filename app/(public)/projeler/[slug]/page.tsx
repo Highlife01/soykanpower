@@ -21,8 +21,8 @@ export async function generateMetadata({
   if (!project) return { title: "Proje Bulunamadı" };
 
   return {
-    title: project.metaTitle || `${project.title} | Soykan Power Projeleri`,
-    description: project.metaDesc || project.scope || "Soykan Power mühendislik projesi.",
+    title: project.metaTitle || `${project.title} | Novatek Enerji Projeleri`,
+    description: project.metaDesc || project.scope || "Novatek Enerji mühendislik projesi.",
   };
 }
 

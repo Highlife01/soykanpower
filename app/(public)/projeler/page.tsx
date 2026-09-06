@@ -7,7 +7,7 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { MapPin, Calendar, ArrowRight, FolderGit2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Projelerimiz | Soykan Power Mühendislik",
+  title: "Projelerimiz | Novatek Enerji Mühendislik",
   description:
     "Elektrik taahhüt, trafo merkezleri, fabrika otomasyonu ve güneş enerjisi alanlarında tamamlanan ve devam eden mühendislik projelerimiz.",
 };
@@ -115,7 +115,7 @@ export default async function ProjectsPage({ searchParams }: ProjectsPageProps) 
                     />
                   ) : (
                     <div className="text-xs text-slate-500 font-mono">
-                      Soykan Power Proje Kaydı
+                      Novatek Enerji Proje Kaydı
                     </div>
                   )}
                   <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-slate-950/80 backdrop-blur-md text-amber-400 border border-slate-700">

@@ -33,13 +33,13 @@ export async function generateMetadata({
   if (!sector) return { title: "Sektör Bulunamadı" };
 
   return {
-    title: sector.metaTitle || `${sector.title} Elektrik & Otomasyon | Soykan Power`,
+    title: sector.metaTitle || `${sector.title} Elektrik & Otomasyon | Novatek Enerji`,
     description: sector.metaDesc || sector.shortDesc,
     alternates: {
       canonical: `/sektorler/${sector.slug}`,
     },
     openGraph: {
-      title: `${sector.title} | Soykan Power Mühendislik`,
+      title: `${sector.title} | Novatek Enerji Mühendislik`,
       description: sector.shortDesc,
       type: "website",
     },

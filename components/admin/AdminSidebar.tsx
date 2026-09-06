@@ -55,7 +55,7 @@ export function AdminSidebar() {
             </div>
             <div className="flex flex-col">
               <span className="text-sm font-extrabold tracking-wider text-white">
-                SOYKAN<span className="text-amber-400 ml-0.5">ADMIN</span>
+                NOVATEK<span className="text-amber-400 ml-0.5">ADMIN</span>
               </span>
               <span className="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">
                 Yönetim Paneli

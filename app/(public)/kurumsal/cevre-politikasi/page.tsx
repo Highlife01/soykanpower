@@ -6,7 +6,7 @@ import { Leaf, CheckCircle2, Sun, Recycle } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Çevre Politikamız",
-  description: "Soykan Power sürdürülebilirlik, yeşil enerji ve çevre yönetim standartları.",
+  description: "Novatek Enerji sürdürülebilirlik, yeşil enerji ve çevre yönetim standartları.",
 };
 
 export default function EnvironmentPolicyPage() {
@@ -53,7 +53,7 @@ export default function EnvironmentPolicyPage() {
                 Sürdürülebilir Mühendislik Yaklaşımımız
               </h2>
               <p>
-                Soykan Power olarak; enerji dönüşümünün merkezinde yer alan bir mühendislik
+                Novatek Enerji olarak; enerji dönüşümünün merkezinde yer alan bir mühendislik
                 kuruluşu olarak, gelecek nesillere temiz bir dünya bırakma sorumluluğunu
                 taşıyoruz. Tasarladığımız tüm sistemlerde enerji verimliliği ve karbon
                 ayak izinin azaltılması temel mühendislik kriterimizdir.
